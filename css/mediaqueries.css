@@ -1,0 +1,163 @@
+
+
+
+/* == FOR MOBILE === */
+@media screen and (max-width: 600px) {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  scroll-behavior: smooth;
+
+  }
+
+  
+
+
+/* bottom nav */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: var(--bg);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid #333;
+  z-index: 10;
+}
+
+.bottom-nav .nav-item {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  transition: color 0.3s ease;
+}
+
+.bottom-nav .nav-item i {
+  font-size: 20px;
+}
+
+.bottom-nav .nav-item:hover,
+.bottom-nav .nav-item.active {
+  color: var(--primary-color); /* use your brand color here */
+}
+
+
+
+  
+  .video-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .background-clip {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+
+  .slider-switch {
+   transform: translate(0, -100%);
+   height: 5vh;
+}
+  /* Optional: prevent zooming or shifting on small devices */
+  @media (max-width: 768px) {
+    .background-clip {
+      max-width: 100vw;
+      max-height: 100vh;
+    }
+  }
+  
+
+
+  header {
+    margin-top: -2px;
+    z-index: 900;
+  }
+   
+  nav {
+    display: none;
+  }
+
+  .hero h1, p {
+    scale: 0.9;
+    gap: 0;
+  }
+
+  .links {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 50px;
+    gap: 0;
+  }
+
+  .links button {
+    transform: translateX(100%);
+    /* padding: 5px 20px; */
+    width: 120px;
+  }
+
+  .links .icons {
+    transform: translateX(-100%);
+    gap: 3px;
+
+  }
+
+  .links .icons svg {
+    scale: 1.2;
+  }
+  .links .icons svg:hover {
+    scale: 1.4;
+  }
+
+  .section h2 {
+    margin-top: -30%;
+  }
+
+  .about-content {
+    width: 125%;
+    font-size: 20px;
+    transform: translateX(-32%);
+  }
+
+.iconsg {
+ gap: 1rem;
+}
+
+  .about-content p {
+    text-align: center;
+    text-align: justify;
+  }
+
+  .about-container {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  
+  .project img {
+    width: 50%;
+  }
+}
