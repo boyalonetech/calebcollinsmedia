@@ -86,8 +86,8 @@ body.light {
   background-color: var(--primary-color);
 }
 
-.icon {
-  font-size: 18px;
+.icons {
+  font-size: 10px;
   z-index: 1;
   pointer-events: none;
 }
@@ -313,8 +313,11 @@ nav a:hover {
 
 .links svg:hover {
   scale: 2;
+  cursor: pointer;
   transition: 0.3s ease-in-out;
 }
+
+
 
 .icons {
   display: flex;
@@ -327,15 +330,25 @@ nav a:hover {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 30px;
 }
-
-.service-box,
-.team-box {
-  background: transparent;
-  padding: 30px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 2px 2px var(--bg);
+.service-box {
+  padding: 0;
+  overflow: hidden;
+  border-radius: 8px;
 }
+
+.service-img {
+  width: 100%;
+  height: 200px; /* Adjust height as needed */
+  object-fit: cover; /* Makes sure image fills area without distortion */
+  display: block;
+}
+ 
+.service-box h3,
+.service-box p {
+  padding: 10px;
+}
+
+
 
 .team-box img {
   width: 100px;
@@ -380,7 +393,7 @@ nav a:hover {
   background: #222;
   border-radius: 12px;
   overflow: hidden;
-  transition: transform 0.3s ease;
+  transition: transform 0.1s ease-in-out;
   transform: scale(0.85);
   margin-left: -30px; /* Overlap effect (adjusted for new size) */
 }
@@ -390,7 +403,7 @@ nav a:hover {
 }
 
 .card.active {
-  transform: scale(1.2); /* Slightly more dramatic center scaling */
+  transform: scale(1.5); /* Slightly more dramatic center scaling */
   z-index: 2;
 }
 

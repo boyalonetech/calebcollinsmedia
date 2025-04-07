@@ -7,7 +7,7 @@ function updateBoxShadows() {
   const isDark = body.classList.contains("dark");
   services.forEach(service => {
     service.style.boxShadow = isDark
-      ? "0 1.5px 3px rgb(230, 211, 104)"  // Green for dark mode
+      ? "0 2px 6px rgb(230, 211, 104)"  // Green for dark mode
       : "0 4px 8px rgba(0, 0, 0, 0.3)";   // Black for light mode
   });
 }
@@ -88,7 +88,7 @@ cardContainer.addEventListener("scroll", () => {
     const distance = Math.abs(containerCenter - cardCenter);
 
     // Distance-based scaling (you can tweak the divisor for effect)
-    let scale = Math.max(0.85, 1.1 - distance / 600);
+    let scale = Math.max(0.80, 1.1 - distance / 600);
     card.style.transform = `scale(${scale})`;
   });
 });
