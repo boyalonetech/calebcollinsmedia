@@ -1,270 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me - Digital Marketer</title>
-    <link rel="html" href="page.html">
-    <link rel="stylesheet" href="css/mediaqueries.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Marketer | Caleb Collin's </title>
+    <meta name="description" content="Digital Marketer | Collin's Caleb">
+    <meta name="keywords" content="Digital Marketing, SEO, Content Marketing, Social Media, PPC" />
+    <meta name="author" content="Collin's Caleb" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#000000" /> 
+    <!-- font icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM8d7j3z2l1e5c5e5b5e5b5e5b5e5b5e5b5e5" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="shortcut icon" href="assets/images/caleb-collins.png" type="image/x-icon">
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
 
-        header {
-  background-color: #000;
-  color: #fff;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1100;
-  width: 100%;
-  display: flex;
-  padding-right: 10px;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 1px 3px var(--primary-color);
-  backdrop-filter: blur(10px);
-}
-
-header h1 {
-  color: var(--primary-color);
-  font-size: 26px;
-  color: rgb(230, 211, 104);
-}
-
-nav a {
-  position: relative;
-  color: var(--primary-color);
-  text-decoration: none;
-  margin-left: 20px;
-  font-weight: bold;
-  font-size: 14px;
-  transition: color 0.3s ease;
-}
-
-nav a::after {
-  content: "";
-  position: absolute;
-  bottom: -4px; /* space below text */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 3.5px;
-  border-radius: 15px;
-  background-color: rgb(230, 211, 104);
-  transition: width 0.4s ease;
-}
-
-nav a:hover::after {
-  width: 100%;
-}
-
-nav ul {
-  display: flex;
-  list-style: none;
-  color: rgb(230, 211, 104);
-}
-
-
-
-.logo {
-  display: flex;
-  align-items: center;
-}
-
-nav a {
-  color: var(--primary-color);
-  text-decoration: none;
-  margin-left: 20px;
-  font-weight: bold;
-  font-size: 14px;
-  transition: color 0.3s ease;
-}
-
-nav a:hover {
-  color: var(--primary-color);
-}
-
-
-        section {
-            margin: 20px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            color: #333;
-            font-size: 2rem;
-        }
-        p {
-            line-height: 1.6;
-            font-size: 1.1rem;
-        }
-        .highlight {
-            color: rgb(230, 211, 104);
-            font-weight: bold;
-        }
-        .profile-img {
-            width: 250px;
-            height: 250px;
-            border-radius: 20px;
-            object-fit: cover;
-            display: block;
-            margin: 0 auto 20px; /* Centering the image and adding space below */
-        }
-        footer {
-            background-color: #000;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            margin-top: 40px;
-        }
-
+  <body>
+    <!-- ===================== HEADER =========================== -->
+    <header>
+      <div class="logo">
+        <img
+          src="/assets/images/caleb-collins.png"
+          width="55vw"
+          style="border-radius: 50%"
+          alt="logo"
+        />
         
-.switch-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.slider-switch {
-    margin-top: 4%;
-    margin-left: auto;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    font-size: 1.5em;
-    background: #1f1e1e;
-    padding: 0px 30px ;
-    height: 7vh;
-    font-weight: bolder;
-    padding-right: 50px;
-    border-radius: 18px;
-    border: none;
-    scale: 0.6;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 5px var(--color);
-    z-index: 1300;
-}
-
-.bottom-nav {
-  display: none;
-}
-
-.slider-switch.active {
-  background-color: var(--primary-color);
-}
-
-.icons {
-  font-size: 10px;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.slider-toggle {
-  width: 34px;
-  height: 34px;
-  background-color: var(--color);
-  border-radius: 50%;
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  transition: transform 0.3s ease;
-  z-index: 1200;
-}
-
-.slider-switch.active .slider-toggle {
-  transform: translateX(40px);
-}
-
-
-@media (max-width:768px) {
-  /* bottom nav */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  transform: translate(-5%, 35%);
-  height: 60px;
-  scale: 1.1;
-  background-color: #000;
-  display: flex;
-  justify-content: space-around;
-  color: rgb(230, 211, 104);
-  align-items: center;
-  border-top: 1px solid #333;
-  z-index: 10;
-}
-
-.bottom-nav .nav-item {
-  color: var(--primary-color);
-  text-decoration: none;
-  font-size: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  transition: color 0.3s ease;
-}
-
-.bottom-nav .nav-item i {
-  font-size: 20px;
-}
-
-.bottom-nav .nav-item:hover,
-.bottom-nav .nav-item.active {
-  color: var(--primary-color); /* use your brand color here */
-}
-
-
-}
-
-
-    </style>
-</head>
-<body>
-
-  <header>
-    <div class="logo">
-      <img
-        src="/assets/images/caleb-collins.png"
-        width="55vw"
-        style="border-radius: 50%"
-        alt="logo"
-      />
+        <h1>Caleb Collins </h1>
+      </div>
       
-      <h1>Caleb Collins </h1>
-    </div>
-    
 
-    <nav>
-      <ul>
-     <li><a href="page.html">Home</a></li> 
-     <li><a href="page.html#projects">Projects</a></li>
-     <li> <a href="page.html#about">About</a></li>
-     <li> <a href="page.html#services">Services</a></li>
-      <li><a href="page.html#testimonials">Reviews</a></li>
-      <li><a href="page.html#contact">Contact</a></li>
-    </ul>
-    </nav>
-    
+      <nav>
+        <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="page.html#projects">Projects</a></li>
+        <li> <a href="page.html#about">About</a></li>
+        <li> <a href="page.html#services">Services</a></li>
+        <li><a href="page.html#testimonials">Reviews</a></li>
+        <li><a href="page.html#contact">Contact</a></li>
+      </ul>
+      </nav>
+      
 
+    </header>
 
+<!-- ==============================CONTENT ==============================-->
 
-    
-
-  </header>
+<main>
 
   <section class="bottom-nav">
-    <a href="#" class="nav-item active">
+    <a href="page.html" class="nav-item active">
       <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -280,7 +73,7 @@ nav a:hover {
     </svg>
       <span>Home</span>
     </a>
-    <a href="#projects" class="nav-item">
+    <a href="page.html#projects" class="nav-item">
       <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24px"
@@ -296,7 +89,7 @@ nav a:hover {
       <span>Projects</span>
     </a>
     
-    <a href="#services" class="nav-item">
+    <a href="page.html#services" class="nav-item">
       <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24px"
@@ -311,8 +104,22 @@ nav a:hover {
               </svg>
       <span>Services</span>
     </a>
-
-    <a href="#about" class="nav-item">
+    <a href="page.html#testimonials" class="nav-item">
+      <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24px"
+      height="24px"
+      viewBox="0 0 512 512"
+    >
+      <path
+        fill="currentColor"
+        d="M119.1 25v.1c-25 3.2-47.1 32-47.1 68.8c0 20.4 7.1 38.4 17.5 50.9L99.7 157L84 159.9c-13.7 2.6-23.8 9.9-32.2 21.5c-8.5 11.5-14.9 27.5-19.4 45.8c-8.2 33.6-9.9 74.7-10.1 110.5h44l11.9 158.4h96.3L185 337.7h41.9c0-36.2-.3-77.8-7.8-111.7c-4-18.5-10.2-34.4-18.7-45.9c-8.6-11.4-19.2-18.7-34.5-21l-16-2.5L160 144c10-12.5 16.7-30.2 16.7-50.1c0-39.2-24.8-68.8-52.4-68.8c-2.9 0-4.7-.1-5.2-.1M440 33c-17.2 0-31 13.77-31 31s13.8 31 31 31s31-13.77 31-31s-13.8-31-31-31M311 55v48H208v18h103v158h-55v18h55v110H208v18h103v32h80.8c-.5-2.9-.8-5.9-.8-9s.3-6.1.8-9H329V297h62.8c-.5-2.9-.8-5.9-.8-9s.3-6.1.8-9H329V73h62.8c-.5-2.92-.8-5.93-.8-9s.3-6.08.8-9zm129 202c-17.2 0-31 13.8-31 31s13.8 31 31 31s31-13.8 31-31s-13.8-31-31-31m0 160c-17.2 0-31 13.8-31 31s13.8 31 31 31s31-13.8 31-31s-13.8-31-31-31"
+      />
+    </svg>
+      <span>Reviews</span>
+    </a>
+    
+    <a href="page.html#about" class="nav-item">
       <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24px"
@@ -328,75 +135,161 @@ nav a:hover {
       <span>About</span>
     </a>
 
-    <a href="#testimonials" class="nav-item">
-      <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24px"
-      height="24px"
-      viewBox="0 0 512 512"
-    >
-      <path
-        fill="currentColor"
-        d="M119.1 25v.1c-25 3.2-47.1 32-47.1 68.8c0 20.4 7.1 38.4 17.5 50.9L99.7 157L84 159.9c-13.7 2.6-23.8 9.9-32.2 21.5c-8.5 11.5-14.9 27.5-19.4 45.8c-8.2 33.6-9.9 74.7-10.1 110.5h44l11.9 158.4h96.3L185 337.7h41.9c0-36.2-.3-77.8-7.8-111.7c-4-18.5-10.2-34.4-18.7-45.9c-8.6-11.4-19.2-18.7-34.5-21l-16-2.5L160 144c10-12.5 16.7-30.2 16.7-50.1c0-39.2-24.8-68.8-52.4-68.8c-2.9 0-4.7-.1-5.2-.1M440 33c-17.2 0-31 13.77-31 31s13.8 31 31 31s31-13.77 31-31s-13.8-31-31-31M311 55v48H208v18h103v158h-55v18h55v110H208v18h103v32h80.8c-.5-2.9-.8-5.9-.8-9s.3-6.1.8-9H329V297h62.8c-.5-2.9-.8-5.9-.8-9s.3-6.1.8-9H329V73h62.8c-.5-2.92-.8-5.93-.8-9s.3-6.08.8-9zm129 202c-17.2 0-31 13.8-31 31s13.8 31 31 31s31-13.8 31-31s-13.8-31-31-31m0 160c-17.2 0-31 13.8-31 31s13.8 31 31 31s31-13.8 31-31s-13.8-31-31-31"
-      />
-    </svg>
-      <span>Reviews</span>
-    </a>
 
     
 
   </section>
+  
+    <!-- ========================= HERO ================================== -->
 
-<section style="margin-top: 5%;">
-    <!-- Profile Image on Top -->
-    <img src="assets/images/WhatsApp Image 2025-04-05 at 19.44.14_d6be5c1a.jpg" alt="Profile Image" class="profile-img">
-    
-    <h2>Who Am I?</h2>
-    <p>
-        I’m <span class="highlight">Caleb Collins</span>, a passionate and results-driven digital marketer with over 1 years of experience in the fast-paced world of online marketing. With a deep understanding of consumer behavior, data analytics, and the ever-evolving digital landscape, I have crafted and executed successful marketing strategies for businesses of all sizes across various industries.
-    </p>
-    
-    <h2>My Expertise</h2>
-    <p>
-        My journey in digital marketing began when I realized the power of the internet to transform brands. What started as an exploration into SEO and social media marketing quickly grew into a comprehensive skill set that includes:
-    </p>
-    <ul>
-        <li><strong>Search Engine Optimization (SEO):</strong> I’ve optimized countless websites, improving organic search rankings, traffic, and overall site performance. I stay updated with the latest Google algorithms and best practices to ensure lasting results.</li>
-        <li><strong>Content Marketing:</strong> From creating compelling blog posts to developing intricate content strategies, I focus on providing value that engages audiences while driving conversion.</li>
-        <li><strong>Paid Advertising (PPC):</strong> Through Google Ads, Facebook Ads, and other platforms, I run highly-targeted paid campaigns designed to drive immediate traffic and generate leads.</li>
-        <li><strong>Email Marketing:</strong> I create personalized email campaigns that resonate with subscribers and help businesses nurture long-term relationships with their audience.</li>
-        <li><strong>Social Media Marketing:</strong> Crafting powerful brand stories on platforms like Facebook, Instagram, LinkedIn, and Twitter, I connect brands with the right audience at the right time.</li>
-        <li><strong>Web Analytics:</strong> I use tools like Google Analytics to track user behavior, identify trends, and continuously optimize campaigns to ensure maximum ROI.</li>
-    </ul>
 
-    <h2>My Approach</h2>
-    <p>
-        Every business is unique, and that’s why I believe in creating tailored strategies that align with your goals, values, and audience needs. I take a holistic approach to digital marketing by focusing on long-term growth rather than quick wins. My process involves:
-    </p>
-    <ol>
-        <li><strong>In-Depth Analysis:</strong> I start by understanding your business, target market, competitors, and industry trends.</li>
-        <li><strong>Strategic Planning:</strong> I craft a customized marketing strategy that leverages the best channels and tactics to achieve your objectives.</li>
-        <li><strong>Execution & Optimization:</strong> Once the plan is in motion, I continuously analyze performance metrics and optimize strategies to drive better results.</li>
-        <li><strong>Transparency & Communication:</strong> I provide regular updates, detailed reports, and transparent insights, ensuring you’re always in the loop.</li>
-    </ol>
 
-    <h2>Why Work With Me?</h2>
-    <p>
-        By combining creative thinking with data-driven insights, I deliver results that not only meet expectations but exceed them. Whether you are looking to increase brand awareness, generate leads, or improve customer retention, I bring the expertise and dedication to make it happen.
-    </p>
-    <p>
-        What sets me apart is my commitment to continuous learning. Digital marketing is always evolving, and I am dedicated to staying ahead of the curve by adapting to new tools, strategies, and trends. With me, you can expect a forward-thinking, innovative approach to achieving your business goals.
-    </p>
 
-    <h2>Let's Connect!</h2>
-    <p>
-        I’m always excited to collaborate with forward-thinking businesses that are ready to make a mark in the digital world. Whether you’re a startup looking to grow your online presence or an established brand wanting to enhance your marketing efforts, I’d love to help you achieve your vision.
-    </p>
-</section>
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section logo">
+      <img
+        src="/assets/images/caleb-collins.png"
+        alt="Your Logo"
+        class="footer-logo"
+      />
+      <p> <b>Caleb Collin's</b></p>
+    </div>
+    <div class="footer-section about">
+      <h3>About Me</h3>
+      <p>
+        I'm a digital marketing professional dedicated to helping brands grow through data-driven strategies.
+      </p>
+    </div>
+    <div class="footer-section">
+      <h3>Contact Me</h3>
+      <ul>
+        <li>
+          <a href="https://wa.me/message/FPFKXAJM2RWYH1">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+        </li>
 
-<footer>
-    <p>&copy; 2025 Caleb Collins Media. All Rights Reserved.</p>
+        <li>
+          <a href="mailto:boyalonetechs@gmail.com">
+            <i class="fas fa-envelope"></i> Email
+          </a>
+        </li>
+
+        <li>
+          <a href="#contact">
+            <i class="fas fa-phone"></i> +234 816154098
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="footer-section social">
+      <h3>Follow Me</h3>
+      <div class="icons">
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/share/19Zy5KWb4d/?mibextid=wwXIfr">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24px"
+            height="24px"
+            viewBox="0 0 24 24"
+          >
+            <rect width="24" height="24" fill="none" />
+            <path
+              fill="currentColor"
+              d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95"
+            />
+          </svg>
+        </a>
+        <!-- whatsapp -->
+        <a href="http://wa.me/2349045166562">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24px"
+            height="24px"
+            viewBox="0 0 24 24"
+          >
+            <rect width="24" height="24" fill="none" />
+            <path
+              fill="currentColor"
+              d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91c0-2.65-1.03-5.14-2.9-7.01m-7.01 15.24c-1.48 0-2.93-.4-4.2-1.15l-.3-.18l-3.12.82l.83-3.04l-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24c2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c.02 4.54-3.68 8.23-8.22 8.23m4.52-6.16c-.25-.12-1.47-.72-1.69-.81c-.23-.08-.39-.12-.56.12c-.17.25-.64.81-.78.97c-.14.17-.29.19-.54.06c-.25-.12-1.05-.39-1.99-1.23c-.74-.66-1.23-1.47-1.38-1.72c-.14-.25-.02-.38.11-.51c.11-.11.25-.29.37-.43s.17-.25.25-.41c.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31c-.22.25-.86.85-.86 2.07s.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.23 3.74c.59.26 1.05.41 1.41.52c.59.19 1.13.16 1.56.1c.48-.07 1.47-.6 1.67-1.18c.21-.58.21-1.07.14-1.18s-.22-.16-.47-.28"
+            />
+          </svg>
+        </a>
+        <!-- linkedin -->
+        <a
+          href="http://linkedin.com/in/caleb-collins-901756346"
+        >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M20.452 20.45h-3.56v-5.57c0-1.328-.022-3.036-1.85-3.036c-1.851 0-2.134 1.447-2.134 2.942v5.664H9.352V8.997h3.413v1.566h.049c.475-.9 1.636-1.85 3.367-1.85c3.605 0 4.27 2.371 4.27 5.456zM5.339 7.433a2.063 2.063 0 1 1 0-4.13a2.065 2.065 0 0 1 0 4.13M7.12 20.45H3.558V8.997H7.12zM23 0H1a1 1 0 0 0-1 1v22a1 1 0 0 0 1 1h22a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1"/></svg>
+        </a>
+        <!-- instagram -->
+        <a href="https://www.instagram.com/caleb__collins_fire?igsh=aTFrNzJhZW55aDY0&utm_source=q">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24px"
+            height="24px"
+            viewBox="0 0 24 24"
+          >
+            <rect width="24" height="24" fill="none" />
+            <circle
+              cx="17"
+              cy="7"
+              r="1.5"
+              fill="currentColor"
+              fill-opacity="0"
+            >
+              <animate
+                fill="freeze"
+                attributeName="fill-opacity"
+                begin="1.3s"
+                dur="0.15s"
+                values="0;1"
+              />
+            </circle>
+            <g
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            >
+              <path
+                stroke-dasharray="72"
+                stroke-dashoffset="72"
+                d="M16 3c2.76 0 5 2.24 5 5v8c0 2.76 -2.24 5 -5 5h-8c-2.76 0 -5 -2.24 -5 -5v-8c0 -2.76 2.24 -5 5 -5h4Z"
+              >
+                <animate
+                  fill="freeze"
+                  attributeName="stroke-dashoffset"
+                  dur="0.6s"
+                  values="72;0"
+                />
+              </path>
+              <path
+                stroke-dasharray="28"
+                stroke-dashoffset="28"
+                d="M12 8c2.21 0 4 1.79 4 4c0 2.21 -1.79 4 -4 4c-2.21 0 -4 -1.79 -4 -4c0 -2.21 1.79 -4 4 -4"
+              >
+                <animate
+                  fill="freeze"
+                  attributeName="stroke-dashoffset"
+                  begin="0.7s"
+                  dur="0.6s"
+                  values="28;0"
+                />
+              </path>
+            </g>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; @2025 Caleb Collin's. All rights reserved.</p>
+  </div>
 </footer>
+
 <script src="/scripts/main.js"></script>
-</body>
+
+  </body>
 </html>
