@@ -1,7 +1,7 @@
 @import url("./mediaqueries.css");
 
 :root {
-  --primary-color: #f39c12;
+  --primary-color: rgb(230, 211, 104);
   --color: #fff;
   --bg: #000;
 }
@@ -20,16 +20,39 @@ body {
   scroll-behavior: smooth;
 }
 
+
+/* Welcome Message */
+.welcome-text {
+display: flex;
+text-align: center;
+transform: translate(0,-150%);
+color: rgb(230, 211, 104);
+flex-direction: column;
+justify-content: center;
+}
+
+.welcome-text h1 {
+font-size: 40px;
+
+}
+
+.welcome img {
+  border-radius: 100%;
+  scale: 0.7;
+}
+
 /* theme */
 
 body.light {
   background-color: var(--color);
   color: var(--bg);
+  box-shadow: 0 0px solid red;
 }
 
 .dark1 {
   display: none;
 }
+
 
 .switch-wrapper {
   display: flex;
@@ -46,7 +69,7 @@ body.light {
     font-size: 1.5em;
     background: #1f1e1e;
     padding: 0px 30px ;
-    height: 5vh;
+    height: 7vh;
     font-weight: bolder;
     padding-right: 50px;
     border-radius: 18px;
@@ -97,7 +120,7 @@ header {
   padding-right: 10px;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 0px 3px var(--primary-color);
+  box-shadow: 0 1px 3px var(--primary-color);
   backdrop-filter: blur(10px);
 }
 
@@ -108,7 +131,7 @@ header h1 {
 
 nav a {
   position: relative;
-  color: #f39c12;
+  color: var(--primary-color);
   text-decoration: none;
   margin-left: 20px;
   font-weight: bold;
@@ -125,7 +148,7 @@ nav a::after {
   width: 0;
   height: 3.5px;
   border-radius: 15px;
-  background-color: #f39c12;
+  background-color: var(--primary-color);
   transition: width 0.4s ease;
 }
 
@@ -143,7 +166,7 @@ nav ul {
 }
 
 nav a {
-  color: #f39c12;
+  color: var(--primary-color);
   text-decoration: none;
   margin-left: 20px;
   font-weight: bold;
@@ -152,7 +175,7 @@ nav a {
 }
 
 nav a:hover {
-  color: #f39c12;
+  color: var(--primary-color);
 }
 
 .hero {
@@ -226,7 +249,7 @@ nav a:hover {
 
 .about-container {
   display: flex;
-  /* flex-direction: row-reverse; */
+  justify-content: center;
   gap: 3rem;
 }
 
@@ -234,7 +257,7 @@ nav a:hover {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  /* gap: 20px; */
+  justify-content: center;
   max-width: 600px;
   align-items: center;
 }
@@ -264,9 +287,9 @@ nav a:hover {
 
 .links {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 20rem;
-  /* flex-wrap: wrap; */
 }
 
 .links button {
@@ -311,7 +334,7 @@ nav a:hover {
   padding: 30px;
   border-radius: 10px;
   text-align: center;
-  box-shadow: 0 0 5px var(--primary-color);
+  box-shadow: 0 2px 2px var(--bg);
 }
 
 .team-box img {
