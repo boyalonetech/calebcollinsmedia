@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Digital Marketer</title>
+    <link rel="html" href="page.html">
+    <link rel="stylesheet" href="css/mediaqueries.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+  background-color: #000;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1100;
+  width: 100%;
+  display: flex;
+  padding-right: 10px;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px var(--primary-color);
+  backdrop-filter: blur(10px);
+}
+
+header h1 {
+  color: var(--primary-color);
+  font-size: 26px;
+  color: rgb(230, 211, 104);
+}
+
+nav a {
+  position: relative;
+  color: var(--primary-color);
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px; /* space below text */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3.5px;
+  border-radius: 15px;
+  background-color: rgb(230, 211, 104);
+  transition: width 0.4s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  color: rgb(230, 211, 104);
+}
+
+
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  color: var(--primary-color);
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--primary-color);
+}
+
+
+        section {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+            font-size: 2rem;
+        }
+        p {
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .highlight {
+            color: rgb(230, 211, 104);
+            font-weight: bold;
+        }
+        .profile-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 20px;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto 20px; /* Centering the image and adding space below */
+        }
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            margin-top: 40px;
+        }
+
+        
+.switch-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider-switch {
+    margin-top: 4%;
+    margin-left: auto;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 1.5em;
+    background: #1f1e1e;
+    padding: 0px 30px ;
+    height: 7vh;
+    font-weight: bolder;
+    padding-right: 50px;
+    border-radius: 18px;
+    border: none;
+    scale: 0.6;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 5px var(--color);
+    z-index: 1300;
+}
+
+.bottom-nav {
+  display: none;
+}
+
+.slider-switch.active {
+  background-color: var(--primary-color);
+}
+
+.icons {
+  font-size: 10px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.slider-toggle {
+  width: 34px;
+  height: 34px;
+  background-color: var(--color);
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  transition: transform 0.3s ease;
+  z-index: 1200;
+}
+
+.slider-switch.active .slider-toggle {
+  transform: translateX(40px);
+}
+
+
+@media (max-width:768px) {
+  /* bottom nav */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  transform: translate(-5%, 35%);
+  height: 60px;
+  scale: 1.1;
+  background-color: #000;
+  display: flex;
+  justify-content: space-around;
+  color: rgb(230, 211, 104);
+  align-items: center;
+  border-top: 1px solid #333;
+  z-index: 10;
+}
+
+.bottom-nav .nav-item {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  transition: color 0.3s ease;
+}
+
+.bottom-nav .nav-item i {
+  font-size: 20px;
+}
+
+.bottom-nav .nav-item:hover,
+.bottom-nav .nav-item.active {
+  color: var(--primary-color); /* use your brand color here */
+}
+
+
+}
+
+
+    </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img
+        src="/assets/images/caleb-collins.png"
+        width="55vw"
+        style="border-radius: 50%"
+        alt="logo"
+      />
+      
+      <h1>Caleb Collins </h1>
+    </div>
+    
+
+    <nav>
+      <ul>
+     <li><a href="page.html">Home</a></li> 
+     <li><a href="page.html#projects">Projects</a></li>
+     <li> <a href="page.html#about">About</a></li>
+     <li> <a href="page.html#services">Services</a></li>
+      <li><a href="page.html#testimonials">Reviews</a></li>
+      <li><a href="page.html#contact">Contact</a></li>
+    </ul>
+    </nav>
+    
+
+
+
+    
+
+  </header>
+
+  <section class="bottom-nav">
+    <a href="#" class="nav-item active">
+      <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="currentColor"
+        fill-rule="evenodd"
+        d="M11.293 3.293a1 1 0 0 1 1.414 0l6 6l2 2a1 1 0 0 1-1.414 1.414L19 12.414V19a2 2 0 0 1-2 2h-3a1 1 0 0 1-1-1v-3h-2v3a1 1 0 0 1-1 1H7a2 2 0 0 1-2-2v-6.586l-.293.293a1 1 0 0 1-1.414-1.414l2-2z"
+        clip-rule="evenodd"
+      />
+    </svg>
+      <span>Home</span>
+    </a>
+    <a href="#projects" class="nav-item">
+      <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24px"
+                height="24px"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                  d="M42.667 261.76a554.7 554.7 0 0 0 170.667 36.907v42.666h85.333v-42.666a601 601 0 0 0 170.667-36.054v164.054H42.667zM320 64l21.334 21.333V128h128v111.147a605.2 605.2 0 0 1-204.374 38.186H249.6A599.3 599.3 0 0 1 42.667 238.08V128h128V85.333L192 64zm-21.333 42.667h-85.333V128h85.333z"
+                />
+              </svg>
+      <span>Projects</span>
+    </a>
+    
+    <a href="#services" class="nav-item">
+      <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24px"
+                height="24px"
+                viewBox="0 0 32 32"
+              >
+                <path fill="currentColor" d="M20 20h10v2H20zm0 4h6v2h-6z" />
+                <path
+                  fill="currentColor"
+                  d="M30 17v-1a13.987 13.987 0 1 0-10.77 13.625l-.46-1.946A12 12 0 0 1 16 28c-.19 0-.375-.019-.563-.027A20.3 20.3 0 0 1 12.026 17Zm-2.041-2h-5.984a24.3 24.3 0 0 0-2.774-10.559A12.02 12.02 0 0 1 27.96 15M16.563 4.027A20.3 20.3 0 0 1 19.974 15h-7.948a20.3 20.3 0 0 1 3.411-10.973C15.625 4.02 15.81 4 16 4s.375.019.563.027m-3.764.414A24.3 24.3 0 0 0 10.025 15H4.042a12.02 12.02 0 0 1 8.757-10.559m0 23.118A12.02 12.02 0 0 1 4.042 17h5.983a24.3 24.3 0 0 0 2.774 10.559"
+                />
+              </svg>
+      <span>Services</span>
+    </a>
+
+    <a href="#about" class="nav-item">
+      <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24px"
+      height="24px"
+      viewBox="0 0 512 512"
+    >
+      <path
+        fill="currentColor"
+        fill-rule="evenodd"
+        d="M256 42.667c117.822 0 213.334 95.512 213.334 213.333c0 117.82-95.512 213.334-213.334 213.334c-117.82 0-213.333-95.513-213.333-213.334S138.18 42.667 256 42.667m21.38 192h-42.666v128h42.666zM256.217 144c-15.554 0-26.837 11.22-26.837 26.371c0 15.764 10.986 26.963 26.837 26.963c15.235 0 26.497-11.2 26.497-26.667c0-15.446-11.262-26.667-26.497-26.667"
+      />
+    </svg>
+      <span>About</span>
+    </a>
+
+    <a href="#testimonials" class="nav-item">
+      <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24px"
+      height="24px"
+      viewBox="0 0 512 512"
+    >
+      <path
+        fill="currentColor"
+        d="M119.1 25v.1c-25 3.2-47.1 32-47.1 68.8c0 20.4 7.1 38.4 17.5 50.9L99.7 157L84 159.9c-13.7 2.6-23.8 9.9-32.2 21.5c-8.5 11.5-14.9 27.5-19.4 45.8c-8.2 33.6-9.9 74.7-10.1 110.5h44l11.9 158.4h96.3L185 337.7h41.9c0-36.2-.3-77.8-7.8-111.7c-4-18.5-10.2-34.4-18.7-45.9c-8.6-11.4-19.2-18.7-34.5-21l-16-2.5L160 144c10-12.5 16.7-30.2 16.7-50.1c0-39.2-24.8-68.8-52.4-68.8c-2.9 0-4.7-.1-5.2-.1M440 33c-17.2 0-31 13.77-31 31s13.8 31 31 31s31-13.77 31-31s-13.8-31-31-31M311 55v48H208v18h103v158h-55v18h55v110H208v18h103v32h80.8c-.5-2.9-.8-5.9-.8-9s.3-6.1.8-9H329V297h62.8c-.5-2.9-.8-5.9-.8-9s.3-6.1.8-9H329V73h62.8c-.5-2.92-.8-5.93-.8-9s.3-6.08.8-9zm129 202c-17.2 0-31 13.8-31 31s13.8 31 31 31s31-13.8 31-31s-13.8-31-31-31m0 160c-17.2 0-31 13.8-31 31s13.8 31 31 31s31-13.8 31-31s-13.8-31-31-31"
+      />
+    </svg>
+      <span>Reviews</span>
+    </a>
+
+    
+
+  </section>
+
+<section style="margin-top: 5%;">
+    <!-- Profile Image on Top -->
+    <img src="assets/images/WhatsApp Image 2025-04-05 at 19.44.14_d6be5c1a.jpg" alt="Profile Image" class="profile-img">
+    
+    <h2>Who Am I?</h2>
+    <p>
+        I’m <span class="highlight">Caleb Collins</span>, a passionate and results-driven digital marketer with over 1 years of experience in the fast-paced world of online marketing. With a deep understanding of consumer behavior, data analytics, and the ever-evolving digital landscape, I have crafted and executed successful marketing strategies for businesses of all sizes across various industries.
+    </p>
+    
+    <h2>My Expertise</h2>
+    <p>
+        My journey in digital marketing began when I realized the power of the internet to transform brands. What started as an exploration into SEO and social media marketing quickly grew into a comprehensive skill set that includes:
+    </p>
+    <ul>
+        <li><strong>Search Engine Optimization (SEO):</strong> I’ve optimized countless websites, improving organic search rankings, traffic, and overall site performance. I stay updated with the latest Google algorithms and best practices to ensure lasting results.</li>
+        <li><strong>Content Marketing:</strong> From creating compelling blog posts to developing intricate content strategies, I focus on providing value that engages audiences while driving conversion.</li>
+        <li><strong>Paid Advertising (PPC):</strong> Through Google Ads, Facebook Ads, and other platforms, I run highly-targeted paid campaigns designed to drive immediate traffic and generate leads.</li>
+        <li><strong>Email Marketing:</strong> I create personalized email campaigns that resonate with subscribers and help businesses nurture long-term relationships with their audience.</li>
+        <li><strong>Social Media Marketing:</strong> Crafting powerful brand stories on platforms like Facebook, Instagram, LinkedIn, and Twitter, I connect brands with the right audience at the right time.</li>
+        <li><strong>Web Analytics:</strong> I use tools like Google Analytics to track user behavior, identify trends, and continuously optimize campaigns to ensure maximum ROI.</li>
+    </ul>
+
+    <h2>My Approach</h2>
+    <p>
+        Every business is unique, and that’s why I believe in creating tailored strategies that align with your goals, values, and audience needs. I take a holistic approach to digital marketing by focusing on long-term growth rather than quick wins. My process involves:
+    </p>
+    <ol>
+        <li><strong>In-Depth Analysis:</strong> I start by understanding your business, target market, competitors, and industry trends.</li>
+        <li><strong>Strategic Planning:</strong> I craft a customized marketing strategy that leverages the best channels and tactics to achieve your objectives.</li>
+        <li><strong>Execution & Optimization:</strong> Once the plan is in motion, I continuously analyze performance metrics and optimize strategies to drive better results.</li>
+        <li><strong>Transparency & Communication:</strong> I provide regular updates, detailed reports, and transparent insights, ensuring you’re always in the loop.</li>
+    </ol>
+
+    <h2>Why Work With Me?</h2>
+    <p>
+        By combining creative thinking with data-driven insights, I deliver results that not only meet expectations but exceed them. Whether you are looking to increase brand awareness, generate leads, or improve customer retention, I bring the expertise and dedication to make it happen.
+    </p>
+    <p>
+        What sets me apart is my commitment to continuous learning. Digital marketing is always evolving, and I am dedicated to staying ahead of the curve by adapting to new tools, strategies, and trends. With me, you can expect a forward-thinking, innovative approach to achieving your business goals.
+    </p>
+
+    <h2>Let's Connect!</h2>
+    <p>
+        I’m always excited to collaborate with forward-thinking businesses that are ready to make a mark in the digital world. Whether you’re a startup looking to grow your online presence or an established brand wanting to enhance your marketing efforts, I’d love to help you achieve your vision.
+    </p>
+</section>
+
+<footer>
+    <p>&copy; 2025 Caleb Collins Media. All Rights Reserved.</p>
+</footer>
+<script src="/scripts/main.js"></script>
+</body>
+</html>

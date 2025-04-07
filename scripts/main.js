@@ -96,31 +96,6 @@ cardContainer.addEventListener("scroll", () => {
 // Initial trigger
 cardContainer.dispatchEvent(new Event("scroll"));
 
-// SCROLL HIDE
-
-let lastScrollTop = 0;
-
-window.addEventListener("scroll", function () {
-  let scrollTop = window.scrollY || document.documentElement.scrollTop;
-
-  if (scrollTop > lastScrollTop) {
-    // Scrolling down
-
-    console.log("Scrolling Up");
-    ham.style.display = "none"; // Hide element
-    hamMenu.classList.remove("active");
-    sliderSwitch.style.display = "none";
-    ham2.style.display = "none";
-  } else {
-    // Scrolling up
-    console.log("Scrolling Down");
-    ham.style.display = "block";
-    ham2.style.display = "none"; // Show element
-    sliderSwitch.style.display = "block";
-  }
-
-  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Prevent negative values
-});
 
 //    Send Message
 
@@ -137,3 +112,66 @@ function sendMail() {
       alert("Email sent successfully!" + res.status);
     });
 }
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".progress-bar span").forEach((bar) => {
+    bar.style.width = bar.style.width;
+  });
+});
+
+// ======================================= Scroll Handler================================
+document.addEventListener("DOMContentLoaded", function () {
+  // Get all elements that need to be animated
+  const animatedElements = document.querySelectorAll(
+    ".slide-in, .slide-in-left, .slide-in-right"
+  );
+
+  // Function to check if element is in viewport
+  function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+      rect.top <=
+        (window.innerHeight || document.documentElement.clientHeight) * 0.75 &&
+      rect.bottom >= 0
+    );
+  }
+
+  // Function to handle scroll events
+  function handleScroll() {
+    animatedElements.forEach((element) => {
+      if (isInViewport(element)) {
+        element.classList.add("active");
+      } else {
+        // Optional: Remove the class if you want animations to trigger again when scrolling back up
+        // element.classList.remove('active');
+      }
+    });
+  }
+
+  // Debounce function to optimize performance
+  function debounce(func, wait = 10, immediate = true) {
+    let timeout;
+    return function () {
+      const context = this,
+        args = arguments;
+      const later = function () {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      const callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
+  }
+
+  // Initial check in case elements are already in view
+  handleScroll();
+
+  // Add scroll event listener with debounce for performance
+  window.addEventListener("scroll", debounce(handleScroll));
+
+  // Optional: Trigger animations when window is resized (in case layout changes)
+  window.addEventListener("resize", debounce(handleScroll));
+});

@@ -177,5 +177,13 @@ width: 100%;
 }
   /* Optional: prevent zooming or shifting on small devices */
 
-  
+  .footer-logo {
+    /* width: 100vw; */
+    scale: 4;
+    margin-bottom: 15px;
+  }
+.icons {
+  justify-content: center;
+}
+
 }

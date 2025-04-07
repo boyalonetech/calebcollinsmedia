@@ -17,6 +17,7 @@ body {
   line-height: 1.6;
   background-color: var(--bg);
   color: var(--color);
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
@@ -43,7 +44,7 @@ font-size: 40px;
 
 /* theme */
 
-body.light {
+.light {
   background-color: var(--color);
   color: var(--bg);
   box-shadow: 0 0px solid red;
@@ -225,7 +226,7 @@ nav a:hover {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-50px);
   }
   to {
     opacity: 1;
@@ -247,81 +248,133 @@ nav a:hover {
   color: var(--primary-color);
 }
 
-.about-container {
+
+.about-section {
   display: flex;
-  justify-content: center;
-  gap: 3rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.about-content {
+.about-text, .about-image {
+  flex: 1 1 100%;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.about-text {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   justify-content: center;
-  max-width: 600px;
-  align-items: center;
 }
 
-.about-text h1 {
-  margin-top: 5%;
-  text-align: center;
-  margin-bottom: 10%;
+.about-text h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
 }
 
-.about-text,
-.about-img {
-  flex: 1 1 50%;
+.about-text p {
+  font-size: 1.125em; /* Increased size */
+  line-height: 1.8;
+  margin-top: 0;
+  margin-bottom: 20px;
 }
 
-.about-img img {
-  width: 100%;
-  border-radius: 10px;
-  border: 5px solid var(--primary-color);
-}
-
-.about-img h1 {
-  text-align: center;
-  padding: 15px;
-  font-size: 30px;
-}
-
-.links {
+.learn-social {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20rem;
+  margin-top: 10px;
+  flex-wrap: wrap;
 }
 
-.links button {
+.learn-more-btn {
   padding: 10px 20px;
-  color: var(--primary-color);
-  border-radius: 15px;
   background-color: transparent;
-  border: 2px solid var(--primary-color);
-}
-
-.links button:hover {
-  background-color: var(--primary-color);
-  transition: 0.3s ease-in-out;
-  color: var(--bg);
-}
-
-.links svg {
-  scale: 1.5;
-  color: var(--primary-color);
-}
-
-.links svg:hover {
-  scale: 2;
+  color: rgb(186, 168, 64);
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
+  border: 2px solid rgb(186, 168, 64);
+  text-decoration: none;
+}
+
+.learn-more-btn:hover {
+  color: var(--bg);
+  background-color: rgb(186, 168, 64);
   transition: 0.3s ease-in-out;
 }
 
-
-
-.icons {
+.social-icons {
   display: flex;
-  gap: 1rem;
+  gap: 15px;
+}
+
+.social-icons a {
+  text-decoration: none;
+  font-size: 1.2em;
+  color: var(--primary-color);
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  scale: 1.2;
+}
+
+.about-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-image img {
+  width: 100%;
+  max-width: 500px;
+  border: var(--primary-color) solid 3px;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* Desktop styles */
+@media (min-width: 768px) {
+  .about-text, .about-image {
+    flex: 1 1 50%;
+  }
+
+  .about-image {
+    order: 2;
+    justify-content: flex-end;
+  }
+
+  .about-text {
+    order: 1;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 767px) {
+  .learn-social {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .about-text p {
+    width: 100%;
+    scale: 1;
+    font-weight: 500;
+  }
+
+  .about-head {
+    margin-bottom: 100%;
+  }
+}
+
+.icons a {
+  text-decoration: none;
 }
 
 .services,
@@ -334,6 +387,10 @@ nav a:hover {
   padding: 0;
   overflow: hidden;
   border-radius: 8px;
+}
+
+.service-box:hover {
+   cursor: pointer;
 }
 
 .service-img {
@@ -511,10 +568,6 @@ nav a:hover {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
 }
 
 .footer {
