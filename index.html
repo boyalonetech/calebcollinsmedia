@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http - http-equiv="refresh" content="3;page.html" />
+    <meta http - http-equiv="refresh" content="5.6;page.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Digital Marketer | Caleb Collin's</title>
     <meta name="description" content="Digital Marketer | Collin's Caleb" />
@@ -27,12 +27,42 @@
     <section class="welcome">
       <div class="welcome-img">
         <img src="assets/images/caleb-collins.png" alt="" />
-
       </div>
       <div class="welcome-text">
-        <h1>Caleb Collins Media</h1>
-        <p>i specialize in growing your business digitally</p>
-    </div>
+        <h1 id="typewriter-title"></h1>
+        <p id="typewriter-subtitle"></p>
+      </div>
     </section>
+    
+    <script>
+      const titleText = "Caleb Collins Media";
+      const subtitleText = 'Digitalize Your Business Today!';
+    
+      const titleEl = document.getElementById("typewriter-title");
+      const subtitleEl = document.getElementById("typewriter-subtitle");
+    
+      let i = 0, j = 0;
+    
+      function typeTitle() {
+        if (i < titleText.length) {
+          titleEl.innerHTML += titleText.charAt(i);
+          i++;
+          setTimeout(typeTitle, 70);
+        } else {
+          setTimeout(typeSubtitle, 50); // small delay before subtitle
+        }
+      }
+    
+      function typeSubtitle() {
+        if (j < subtitleText.length) {
+          subtitleEl.innerHTML += subtitleText.charAt(j);
+          j++;
+          setTimeout(typeSubtitle, 70);
+        }
+      }
+    
+      window.onload = typeTitle;
+    </script>
+    
   </body>
 </html>
