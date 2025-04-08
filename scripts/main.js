@@ -210,7 +210,7 @@ window.addEventListener('scroll', () => {
     sliderSwitch.style.display = 'none'; // Hide the section when scrolling up
 
   } else {
-    sliderSwitch.style.visibility = 'block'; // Show the section
+    sliderSwitch.style.display = 'block'; // Show the section
 
   }
 

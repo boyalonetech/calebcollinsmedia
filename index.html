@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http - http-equiv="refresh" content="5.6;page.html" />
+    <!-- <meta http-equiv="refresh" content="5.6;page.html" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Digital Marketer | Caleb Collin's</title>
     <meta name="description" content="Digital Marketer | Collin's Caleb" />
@@ -12,47 +12,99 @@
     />
     <meta name="author" content="Caleb Collin's" />
     <meta name="robots" content="index, follow" />
-    <link rel="stylesheet" href="css/styles.css" />
     <link rel="shortcut icon" href="assets/images/caleb-collins.png" type="image/x-icon" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+        color: rgb(230, 211, 104);
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .welcome {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1.5rem;
+        padding: 1rem;
+      }
+
+      .welcome-img img {
+        width: 150px;
+        height: auto;
+        border-radius: 50%;
+        box-shadow: 0 4px 12px rgb(230, 211, 104);
+      }
+
+      .welcome-text h1 {
+        font-size: 2rem;
+        margin: 0;
+        color: rgb(230, 211, 104);
+      }
+
+      .welcome-text p {
+        font-size: 1.2rem;
+        color: rgb(230, 211, 104)ccc;
+        margin: 0;
+      }
+
+      @media (min-width: 600px) {
+        .welcome {
+          flex-direction: row;
+          text-align: left;
+        }
+
+        .welcome-text {
+          padding-left: 1.5rem;
+        }
+
+        .welcome-text h1 {
+          font-size: 2.5rem;
+        }
+
+        .welcome-text p {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
   </head>
-  <body
-    style="
-      display: flex;
-      background-color: #000;
-      justify-content: center;
-      height: 100vh;
-      overflow: hidden;
-    "
-  >
+  <body>
     <section class="welcome">
       <div class="welcome-img">
-        <img src="assets/images/caleb-collins.png" alt="" />
+        <img src="assets/images/caleb-collins.png" alt="Caleb Collins" />
       </div>
       <div class="welcome-text">
         <h1 id="typewriter-title"></h1>
         <p id="typewriter-subtitle"></p>
       </div>
     </section>
-    
+
     <script>
       const titleText = "Caleb Collins Media";
-      const subtitleText = 'Digitalize Your Business Today!';
-    
+      const subtitleText = "Improve Your Business Visibility Online!";
+
       const titleEl = document.getElementById("typewriter-title");
       const subtitleEl = document.getElementById("typewriter-subtitle");
-    
+
       let i = 0, j = 0;
-    
+
       function typeTitle() {
         if (i < titleText.length) {
           titleEl.innerHTML += titleText.charAt(i);
           i++;
           setTimeout(typeTitle, 70);
         } else {
-          setTimeout(typeSubtitle, 50); // small delay before subtitle
+          setTimeout(typeSubtitle, 300);
         }
       }
-    
+
       function typeSubtitle() {
         if (j < subtitleText.length) {
           subtitleEl.innerHTML += subtitleText.charAt(j);
@@ -60,9 +112,8 @@
           setTimeout(typeSubtitle, 70);
         }
       }
-    
+
       window.onload = typeTitle;
     </script>
-    
   </body>
 </html>
