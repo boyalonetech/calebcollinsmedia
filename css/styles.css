@@ -669,7 +669,7 @@ nav a:hover {
 }
 
 /* Show ONLY on tablets (768px - 1024px) */
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 769px) and (max-width: 1024px) {
   .mobile-theme-toggle {
     position: fixed;
     right: 20px;
@@ -678,6 +678,7 @@ nav a:hover {
     display: block; /* Show on tablets */
     padding: 8px 12px;
     border-radius: 20%;
+    margin-bottom: 5%;
     cursor: pointer;
     font-size: 22px;
     z-index: 1000;
@@ -693,11 +694,11 @@ nav a:hover {
 }
 
 /* Hide on all other devices */
-@media (max-width: 767px), (min-width: 1025px) {
+/* @media (min-width: 769px) (max-width: 1025px) {
   .mobile-theme-toggle {
     display: none !important;
   }
-}
+} */
 
 .mobile-theme-toggle svg {
   width: 24px;
