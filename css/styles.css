@@ -653,3 +653,43 @@ nav a:hover {
   border-radius: 15px;
   margin-bottom: 30px;
 }
+.mobile-theme-toggle {
+  display: none;
+  position: fixed;
+  right: 20px;
+  background-color: #222;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 20%;
+  cursor: pointer;
+  font-size: 20px;
+  z-index: 1000;
+  transition: background 0.3s ease;
+}
+
+.mobile-theme-toggle svg {
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  body.mobile-dark {
+    background-color: #111;
+    color: #f9f9f9;
+  }
+
+  body.mobile-light {
+    background-color: #fff;
+    color: #111;
+  }
+}
+
+
+

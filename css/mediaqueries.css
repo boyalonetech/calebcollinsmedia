@@ -20,6 +20,10 @@
     overflow: hidden;
   }
 
+  .slider-switch {
+    display: none;
+  }
+
   
 
 

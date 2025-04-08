@@ -38,6 +38,28 @@ sliderSwitch.addEventListener("click", () => {
   localStorage.setItem("theme", isDark ? "dark" : "light");
 });
 
+// mobile 
+
+const mobileToggle = document.getElementById("mobileThemeToggle");
+
+function setMobileTheme(isDark) {
+  document.body.classList.toggle("mobile-dark", isDark);
+  document.body.classList.toggle("mobile-light", !isDark);
+  localStorage.setItem("mobile-theme", isDark ? "mobile-dark" : "mobile-light");
+  mobileToggle.textContent = isDark ? "🔆" : "🌙";
+}
+
+// Load saved preference
+const savedMobileTheme = localStorage.getItem("mobile-theme") || "mobile-dark";
+setMobileTheme(savedMobileTheme === "mobile-dark");
+
+// Toggle on click
+mobileToggle.addEventListener("click", () => {
+  const isDark = document.body.classList.contains("mobile-dark");
+  setMobileTheme(!isDark);
+});
+
+
 
 // Dynamic scale based on distance from center
 const cardContainer = document.getElementById("cardContainer");
