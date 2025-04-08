@@ -316,6 +316,7 @@ nav a:hover {
 .social-icons {
   display: flex;
   gap: 15px;
+  scale: 1.5;
 }
 
 .social-icons a {
