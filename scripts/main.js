@@ -197,3 +197,21 @@ document.addEventListener("DOMContentLoaded", function () {
   // Optional: Trigger animations when window is resized (in case layout changes)
   window.addEventListener("resize", debounce(handleScroll));
 });
+
+
+let lastScrollTop = 0; // Keeps track of the last scroll position
+
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+  // If scrolling down
+  if (currentScroll > lastScrollTop) {
+    sliderSwitch.style.display = 'none'; // Hide the section when scrolling up
+
+  } else {
+    sliderSwitch.style.display = 'block'; // Show the section
+
+  }
+
+  lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Reset the scroll position to prevent negative values
+});
