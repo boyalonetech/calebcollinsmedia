@@ -654,11 +654,10 @@ nav a:hover {
   margin-bottom: 30px;
 }
 .mobile-theme-toggle {
-  display: none;
   position: fixed;
   right: 20px;
   background-color: #222;
-  color: #fff;
+  display: none;
   padding: 5px 10px;
   border-radius: 20%;
   cursor: pointer;

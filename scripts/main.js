@@ -126,7 +126,7 @@ function sendMail() {
     from_name: document.getElementById("fullName").value,
     email_id: document.getElementById("email_id").value,
     message: document.getElementById("message").value,
-    to_email: "divinetimothyeriq454@gmail.com" // Optional, depending on your template setup
+    to_email: "Sellcoxpress@gmail.com" // Optional, depending on your template setup
   };
 
   emailjs
@@ -218,10 +218,3 @@ window.addEventListener('scroll', () => {
 });
 
 
-
-  const hamburger = document.getElementById("hamburger");
-  const navMenu = document.getElementById("navMenu");
-
-  hamburger.addEventListener("click", () => {
-    navMenu.classList.toggle("active");
-  });

@@ -215,7 +215,7 @@ width: 100%;
 
 
 /* Tablet screens only */
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1180px) {
   .hamburger {
     display: flex;
   }
@@ -224,6 +224,11 @@ width: 100%;
     visibility: hidden;
   }
 
+
+  .card-container {
+    scale: 0.3;
+    margin-right: 10%;
+  }
   
 /* bottom nav */
 .bottom-nav {
@@ -291,9 +296,17 @@ width: 100%;
   }
 
   .mobile-theme-toggle {
-    display: flex;
+    display: block;
+    visibility: visible;
+    border: solid;
     align-items: center;
+    z-index: 1500;
+    margin-right: 10%;
     justify-content: center;
+  }
+
+  *{
+    border: solid;
   }
 
   body.mobile-dark {
