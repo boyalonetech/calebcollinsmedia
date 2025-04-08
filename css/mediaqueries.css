@@ -186,4 +186,19 @@ width: 100%;
   justify-content: center;
 }
 
+
+.more-img img{
+}
+
+.more-img {
+  transform: translate(-10%, 9%);
+  justify-content: center;
+  display: flex;
+
+}
+
+.more {
+  margin-top: 85%;
+
+}
 }
