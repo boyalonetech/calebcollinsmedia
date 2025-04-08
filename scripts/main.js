@@ -126,12 +126,13 @@ function sendMail() {
     from_name: document.getElementById("fullName").value,
     email_id: document.getElementById("email_id").value,
     message: document.getElementById("message").value,
+    to_email: "divinetimothyeriq454@gmail.com" // Optional, depending on your template setup
   };
 
   emailjs
     .send("service_1yl761q", "template_yyb9pal", params)
     .then(function (res) {
-      alert("Email sent successfully!" + res.status);
+      alert("Email sent successfully! Status: " + res.status);
     });
 }
 
@@ -209,9 +210,18 @@ window.addEventListener('scroll', () => {
     sliderSwitch.style.display = 'none'; // Hide the section when scrolling up
 
   } else {
-    sliderSwitch.style.display = 'block'; // Show the section
+    sliderSwitch.style.visibility = 'block'; // Show the section
 
   }
 
   lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Reset the scroll position to prevent negative values
 });
+
+
+
+  const hamburger = document.getElementById("hamburger");
+  const navMenu = document.getElementById("navMenu");
+
+  hamburger.addEventListener("click", () => {
+    navMenu.classList.toggle("active");
+  });
