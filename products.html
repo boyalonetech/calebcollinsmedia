@@ -4,165 +4,149 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
     <script type="module">
-        
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
-    import { getFirestore } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";  // Import Firestore
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+        import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-storage.js";
 
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyCskwp6LXirBoO0lnuYfWZyqKMVoqfMcjM",
-      authDomain: "cc-mediastore.firebaseapp.com",
-      projectId: "cc-mediastore",
-      storageBucket: "cc-mediastore.firebasestorage.app",
-      messagingSenderId: "755685023978",
-      appId: "1:755685023978:web:5b761e81bc846b96103793",
-      measurementId: "G-6L0NJVKKEG"
-    };
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCskwp6LXirBoO0lnuYfWZyqKMVoqfMcjM",
+            authDomain: "cc-mediastore.firebaseapp.com",
+            projectId: "cc-mediastore",
+            storageBucket: "cc-mediastore.appspot.com",
+            messagingSenderId: "755685023978",
+            appId: "1:755685023978:web:5b761e81bc846b96103793",
+            measurementId: "G-6L0NJVKKEG"
+        };
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app); // Initialize Firestore
+        const storage = getStorage(app); // Initialize Firebase Storage
 
-    // Initialize Firestore
-    const db = getFirestore(app);  // Use getFirestore instead of firebase.firestore()
+        // Display Products Function
+        async function displayProducts() {
+            const productContainer = document.getElementById("product-container");
+            productContainer.innerHTML = ""; // Clear existing products
 
+            // Get products from Firestore
+            const productRef = collection(db, "products");
+            const snapshot = await getDocs(productRef);
+            
+            snapshot.forEach(doc => {
+                const product = doc.data();
+                const productCard = document.createElement("div");
+                productCard.classList.add("product-card");
+
+                productCard.innerHTML = `
+                    <img src="${product.imageUrl}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>$${product.price}</p>
+                    <p>${product.description}</p>
+                    <button class="buy-btn" onclick="sendToWhatsApp('${product.name}', '${product.price}', '${product.description}')">Buy</button>
+                `;
+                
+                productContainer.appendChild(productCard);
+            });
+
+            // Local Storage fallback: If no Firebase products, display local products
+            const localProducts = JSON.parse(localStorage.getItem('products')) || [];
+            localProducts.forEach(product => {
+                const productCard = document.createElement("div");
+                productCard.classList.add("product-card");
+
+                productCard.innerHTML = `
+                    <img src="${product.imageUrl}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>$${product.price}</p>
+                    <p>${product.description}</p>
+                    <button class="buy-btn" onclick="sendToWhatsApp('${product.name}', '${product.price}', '${product.description}')">Buy</button>
+                `;
+
+                productContainer.appendChild(productCard);
+            });
+        }
+
+        // Send product details to WhatsApp
+        function sendToWhatsApp(name, price, description) {
+            const message = `Product: ${name}\nPrice: $${price}\nDescription: ${description}`;
+            const phoneNumber = "YOUR_WHATSAPP_NUMBER"; // Replace with your WhatsApp number
+            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
+        }
+
+        // Load products on page load
+        displayProducts();
     </script>
     <style>
-        /* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-}
+        /* Basic Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
 
-h1 {
-    color: #333;
-    font-size: 32px;
-    margin-bottom: 30px;
-}
+        h1 {
+            color: #333;
+            text-align: center;
+        }
 
-#product-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
 
-.product-card {
-    background-color: #fff;
-    width: 250px;
-    margin: 20px;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.2s ease;
-}
+        .product-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 250px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
 
-.product-card:hover {
-    transform: scale(1.05);
-}
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
 
-.product-card img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 8px;
-}
+        .product-card h3 {
+            color: #333;
+            font-size: 18px;
+            margin: 10px 0;
+        }
 
-.product-card h3 {
-    font-size: 18px;
-    color: #333;
-}
+        .product-card p {
+            color: #555;
+            font-size: 14px;
+        }
 
-.product-card p {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 10px;
-}
+        .buy-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
 
-.product-card button {
-    background-color: #28a745;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.product-card button:hover {
-    background-color: #218838;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .product-card {
-        width: 200px;
-    }
-}
-
-@media (max-width: 480px) {
-    .product-card {
-        width: 160px;
-    }
-}
-
+        .buy-btn:hover {
+            background-color: #218838;
+        }
     </style>
 </head>
 <body>
 
 <h1>Available Products</h1>
 
-<div id="product-container"></div>
-
-<script>
-
-// Display Products
-function displayProducts() {
-    const productContainer = document.getElementById("product-container");
-    productContainer.innerHTML = ""; // Clear existing products
-
-    db.collection("products").get().then(snapshot => {
-        snapshot.forEach(doc => {
-            const product = doc.data();
-            const productCard = document.createElement("div");
-            productCard.classList.add("product-card");
-
-            productCard.innerHTML = `
-                <img src="${product.imageUrl}" alt="${product.name}">
-                <h3>${product.name}</h3>
-                <p>$${product.price}</p>
-                <p>${product.description}</p>
-                <button class="buy-btn" onclick="sendToWhatsApp('${product.name}', '${product.price}', '${product.description}')">Buy</button>
-            `;
-
-            productContainer.appendChild(productCard);
-        });
-    });
-}
-
-// Send Product Details to WhatsApp
-function sendToWhatsApp(name, price, description) {
-    const message = `Product: ${name}\nPrice: $${price}\nDescription: ${description}`;
-    const phoneNumber = "YOUR_WHATSAPP_NUMBER"; // Add your WhatsApp number
-    window.open(`https://wa.me/${2348161514098}?text=${encodeURIComponent(message)}`, "_blank");
-}
-
-// Initial Display
-displayProducts();
-</script>
+<div id="product-container" class="product-container">
+    <!-- Products will be displayed here -->
+</div>
 
 </body>
 </html>
