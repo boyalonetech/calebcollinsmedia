@@ -1,214 +1,107 @@
+<!-- add.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Add Product</title>
-  <style>
-    /* Basic styling */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f1f1f1;
-    }
-
-    header {
-      background-color: #00ffd5;
-      padding: 10px;
-      text-align: center;
-      font-size: 24px;
-      color: white;
-    }
-
-    .add-btn {
-      background-color: #00ffd5;
-      padding: 10px 20px;
-      border: none;
-      cursor: pointer;
-      margin: 20px;
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal-content {
-      background-color: white;
-      padding: 20px;
-      width: 300px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .modal-content input, .modal-content textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    .modal-content button {
-      width: 100%;
-      padding: 10px;
-      background-color: #00ffd5;
-      border: none;
-      cursor: pointer;
-    }
-
-    .product-card {
-      background-color: white;
-      padding: 20px;
-      margin: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .product-card img {
-      width: 100%;
-      height: auto;
-      max-width: 100px;
-      max-height: 100px;
-    }
-
-    .product-card h3 {
-      margin: 10px 0;
-    }
-
-    .product-card .price {
-      font-weight: bold;
-      color: #00ffd5;
-    }
-
-    .product-card button {
-      background-color: #00ffd5;
-      padding: 5px 10px;
-      border: none;
-      cursor: pointer;
-    }
-
-    .product-card .delete-btn {
-      background-color: red;
-      margin-left: 10px;
-    }
-
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Database -->
+ 
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
+    // TODO: Add SDKs for Database products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Database configuration
+    // For Database JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyCskwp6LXirBoO0lnuYfWZyqKMVoqfMcjM",
+      authDomain: "cc-mediastore.firebaseapp.com",
+      projectId: "cc-mediastore",
+      storageBucket: "cc-mediastore.firebasestorage.app",
+      messagingSenderId: "755685023978",
+      appId: "1:755685023978:web:5b761e81bc846b96103793",
+      measurementId: "G-6L0NJVKKEG"
+    };
+  
+    // Initialize Database
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
 </head>
 <body>
+  <h1>Add Product</h1>
+  <button onclick="openForm()">Add Product</button>
 
-<header>Add New Product</header>
-
-<button class="add-btn" onclick="showModal()">+ Add Product</button>
-
-<div class="container" id="product-container"></div>
-
-<!-- Modal -->
-<div class="modal" id="productModal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <h3 style="color: #00ffd5; margin-bottom: 1rem;">Add Product</h3>
-    <input type="file" id="productImage" accept="image/*">
-    <input type="text" id="productName" placeholder="Product Name">
-    <input type="text" id="productPrice" placeholder="e.g. ₦5000 or $25">
-    <textarea id="productDesc" placeholder="Short Description (max 4 lines)"></textarea>
-    <button class="submit-btn" onclick="addProduct()">Add to Page</button>
+  <div id="form-popup" style="display:none;">
+    <form id="product-form">
+      <input type="file" id="image-input" accept="image/*" required><br>
+      <input type="text" id="name-input" placeholder="Product Name" required><br>
+      <input type="text" id="price-input" placeholder="Price (₦)" required><br>
+      <textarea id="desc-input" maxlength="300" rows="4" placeholder="Product Description (max 4 lines)"></textarea><br>
+      <button type="submit">Submit</button>
+    </form>
   </div>
-</div>
 
-<div>
-  <a href="products.html">See All Products</a>
-</div>
+  <div id="product-container"></div>
 
-<script>
-  const container = document.getElementById("product-container");
+  <script>
+    const form = document.getElementById("product-form");
+    const container = document.getElementById("product-container");
 
-  function showModal() {
-    document.getElementById("productModal").style.display = "flex";
-  }
-
-  function closeModal() {
-    document.getElementById("productModal").style.display = "none";
-  }
-
-  function addProduct() {
-    const imageInput = document.getElementById("productImage");
-    const name = document.getElementById("productName").value;
-    const price = document.getElementById("productPrice").value;
-    const desc = document.getElementById("productDesc").value;
-
-    if (!imageInput.files[0] || !name || !price || !desc) {
-      alert("Please fill all fields.");
-      return;
+    function openForm() {
+      document.getElementById("form-popup").style.display = "block";
     }
 
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      const imageData = e.target.result;
-      const product = { image: imageData, name, price, desc };
-      
-      const products = JSON.parse(localStorage.getItem("products") || "[]");
-      products.push(product);
-      localStorage.setItem("products", JSON.stringify(products));
+    function renderProduct(product, id) {
+      const card = document.createElement("div");
+      card.className = "product-card";
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}" style="width:100%; height:200px; object-fit:cover;">
+        <h3>${product.name}</h3>
+        <p>${product.price}</p>
+        <p>${product.desc}</p>
+        <button onclick="deleteProduct('${id}')">Delete</button>
+      `;
+      container.appendChild(card);
+    }
 
-      clearInputs();
-      closeModal();
-      loadProducts();
-    };
-    reader.readAsDataURL(imageInput.files[0]);
-  }
+    function loadProducts() {
+      container.innerHTML = "";
+      db.collection("products").get().then(snapshot => {
+        snapshot.forEach(doc => {
+          renderProduct(doc.data(), doc.id);
+        });
+      });
+    }
 
-  function deleteProduct(index) {
-    const products = JSON.parse(localStorage.getItem("products") || "[]");
-    products.splice(index, 1); // Remove the product from the array
-    localStorage.setItem("products", JSON.stringify(products));
-    loadProducts(); // Re-load the products after deletion
-  }
+    function deleteProduct(id) {
+      db.collection("products").doc(id).delete().then(() => {
+        loadProducts();
+      });
+    }
 
-  function renderProduct(product, index) {
-    const card = document.createElement("div");
-    card.classList.add("product-card");
-    card.innerHTML = `
-      <img src="${product.image}" alt="${product.name}">
-      <h3>${product.name}</h3>
-      <p class="price">${product.price}</p>
-      <p class="description">${product.desc}</p>
-      <div style="display: flex; justify-content: space-between; gap: 10px; margin-top: 10px;">
-        <button class="buy-btn">Buy</button>
-        <button class="delete-btn" onclick="deleteProduct(${index})">Delete</button>
-        <a href="products.html"><button class="buy-btn">See All Products</button></a>
-      </div>
-    `;
-    container.appendChild(card);
-  }
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("name-input").value;
+      const price = document.getElementById("price-input").value;
+      const desc = document.getElementById("desc-input").value;
+      const imageFile = document.getElementById("image-input").files[0];
 
-  function clearInputs() {
-    document.getElementById("productImage").value = '';
-    document.getElementById("productName").value = '';
-    document.getElementById("productPrice").value = '';
-    document.getElementById("productDesc").value = '';
-  }
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const imageData = event.target.result;
+        db.collection("products").add({ name, price, desc, image: imageData }).then(() => {
+          form.reset();
+          loadProducts();
+        });
+      };
+      reader.readAsDataURL(imageFile);
+    });
 
-  function loadProducts() {
-    container.innerHTML = "";
-    const products = JSON.parse(localStorage.getItem("products") || "[]");
-    products.forEach((p, i) => renderProduct(p, i));
-  }
-
-  window.onload = loadProducts;
-</script>
-
+    window.onload = loadProducts;
+  </script>
 </body>
 </html>

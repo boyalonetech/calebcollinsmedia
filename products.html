@@ -1,133 +1,75 @@
+
+<!-- products.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>All Products</title>
-  <style>
-    /* Body and Global Styles */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #1d1f23;
-      color: #fff;
-    }
+  <title>Products</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Database -->
 
-    header {
-      background-color: #00ffd5;
-      padding: 15px;
-      text-align: center;
-      font-size: 32px;
-      color: white;
-      letter-spacing: 2px;
-    }
-
-    /* Container and Product Cards */
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 30px;
-      padding: 20px;
-    }
-
-    .product-card {
-      background-color: #222;
-      padding: 20px;
-      margin: 15px;
-      width: 300px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-      transition: transform 0.2s ease;
-    }
-
-    .product-card:hover {
-      transform: scale(1.05);
-    }
-
-    .product-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-
-    .product-card h3 {
-      margin-top: 15px;
-      font-size: 20px;
-      color: #fff;
-    }
-
-    .product-card .price {
-      font-weight: bold;
-      color: #00ffd5;
-      margin: 10px 0;
-    }
-
-    .product-card .description {
-      font-size: 14px;
-      color: #aaa;
-      margin-bottom: 15px;
-    }
-
-    .product-card .buy-btn {
-      background-color: #00ffd5;
-      color: #222;
-      border: none;
-      padding: 10px 20px;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background-color 0.2s ease;
-    }
-
-    .product-card .buy-btn:hover {
-      background-color: #00ccaa;
-    }
-
-    /* Footer */
-    footer {
-      background-color: #00ffd5;
-      padding: 20px;
-      text-align: center;
-      font-size: 16px;
-      color: white;
-    }
-  </style>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
+    // TODO: Add SDKs for Database products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Database configuration
+    // For Database JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyCskwp6LXirBoO0lnuYfWZyqKMVoqfMcjM",
+      authDomain: "cc-mediastore.firebaseapp.com",
+      projectId: "cc-mediastore",
+      storageBucket: "cc-mediastore.firebasestorage.app",
+      messagingSenderId: "755685023978",
+      appId: "1:755685023978:web:5b761e81bc846b96103793",
+      measurementId: "G-6L0NJVKKEG"
+    };
+  
+    // Initialize Database
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
 </head>
 <body>
+  <h1>Products</h1>
+  <div id="product-container"></div>
 
-<header>All Products</header>
+  <script>
+    const container = document.getElementById("product-container");
 
-<div class="container" id="product-container"></div>
+    function renderProduct(product) {
+      const message = encodeURIComponent(
+        `Hi, I'm interested in this product:\n\n*${product.name}*\nPrice: ${product.price}\n\nDescription:\n${product.desc}`
+      );
 
-<footer>
-  <p>&copy; 2025 BOY ALONE RECORDS. All Rights Reserved.</p>
-</footer>
+      const whatsappNumber = "2349012345678"; // replace with your number
 
-<script>
-  const container = document.getElementById("product-container");
+      const card = document.createElement("div");
+      card.className = "product-card";
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}" style="width:100%; height:200px; object-fit:cover;">
+        <h3>${product.name}</h3>
+        <p>${product.price}</p>
+        <p>${product.desc}</p>
+        <a href="https://wa.me/${2348161514098}?text=${message}" target="_blank">
+          <button>Buy</button>
+        </a>
+      `;
+      container.appendChild(card);
+    }
 
-  function renderProduct(product) {
-    const card = document.createElement("div");
-    card.classList.add("product-card");
-    card.innerHTML = `
-      <img src="${product.image}" alt="${product.name}">
-      <h3>${product.name}</h3>
-      <p class="price">${product.price}</p>
-      <p class="description">${product.desc}</p>
-      <a href="add.html"><button class="buy-btn">Buy</button></a>
-    `;
-    container.appendChild(card);
-  }
+    function loadProducts() {
+      container.innerHTML = "";
+      db.collection("products").get().then(snapshot => {
+        snapshot.forEach(doc => {
+          renderProduct(doc.data());
+        });
+      });
+    }
 
-  function loadProducts() {
-    container.innerHTML = "";
-    const products = JSON.parse(localStorage.getItem("products") || "[]");
-    products.forEach(p => renderProduct(p));
-  }
-
-  window.onload = loadProducts;
-</script>
-
+    window.onload = loadProducts;
+  </script>
 </body>
 </html>
