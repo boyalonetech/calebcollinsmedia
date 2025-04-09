@@ -3,94 +3,82 @@
 <head>
   <meta charset="UTF-8">
   <title>All Products</title>
+  <!-- Add Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
   <style>
-    /* Body and Global Styles */
+    /* Basic styling */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #1d1f23;
-      color: #fff;
+      background-color: #f1f1f1;
     }
 
     header {
       background-color: #00ffd5;
-      padding: 15px;
+      padding: 10px;
       text-align: center;
-      font-size: 32px;
+      font-size: 24px;
       color: white;
-      letter-spacing: 2px;
-    }
-
-    /* Container and Product Cards */
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 30px;
-      padding: 20px;
     }
 
     .product-card {
-      background-color: #222;
+      background-color: white;
       padding: 20px;
-      margin: 15px;
-      width: 300px;
+      margin: 20px;
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-      transition: transform 0.2s ease;
-    }
-
-    .product-card:hover {
-      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 250px;
     }
 
     .product-card img {
       width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 10px;
+      height: auto;
+      max-width: 200px;
+      max-height: 200px;
+      object-fit: contain;
     }
 
     .product-card h3 {
-      margin-top: 15px;
-      font-size: 20px;
-      color: #fff;
+      margin: 10px 0;
     }
 
     .product-card .price {
       font-weight: bold;
       color: #00ffd5;
-      margin: 10px 0;
+      font-size: 1.2em;
     }
 
-    .product-card .description {
-      font-size: 14px;
-      color: #aaa;
-      margin-bottom: 15px;
-    }
-
-    .product-card .buy-btn {
+    .product-card button {
       background-color: #00ffd5;
-      color: #222;
+      padding: 10px 15px;
       border: none;
-      padding: 10px 20px;
       cursor: pointer;
-      border-radius: 5px;
-      transition: background-color 0.2s ease;
+      width: 100%;
+      margin-top: 10px;
+      font-weight: bold;
     }
 
-    .product-card .buy-btn:hover {
-      background-color: #00ccaa;
-    }
-
-    /* Footer */
-    footer {
-      background-color: #00ffd5;
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       padding: 20px;
+    }
+
+    .back-btn {
+      display: block;
+      background-color: #00ffd5;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      margin: 20px auto;
       text-align: center;
-      font-size: 16px;
+      width: fit-content;
+      text-decoration: none;
       color: white;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -98,13 +86,26 @@
 
 <header>All Products</header>
 
+<a href="index.html" class="back-btn">← Back to Add Product</a>
+
 <div class="container" id="product-container"></div>
 
-<footer>
-  <p>&copy; 2025 BOY ALONE RECORDS. All Rights Reserved.</p>
-</footer>
-
 <script>
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    databaseURL: "YOUR_DATABASE_URL",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
+
   const container = document.getElementById("product-container");
 
   function renderProduct(product) {
@@ -115,15 +116,32 @@
       <h3>${product.name}</h3>
       <p class="price">${product.price}</p>
       <p class="description">${product.desc}</p>
-      <a href="add.html"><button class="buy-btn">Buy</button></a>
+      <button class="buy-btn">Buy Now</button>
     `;
     container.appendChild(card);
   }
 
+  // Load products from Firebase
   function loadProducts() {
-    container.innerHTML = "";
-    const products = JSON.parse(localStorage.getItem("products") || "[]");
-    products.forEach(p => renderProduct(p));
+    container.innerHTML = "<p style='text-align:center;width:100%'>Loading products...</p>";
+    
+    database.ref('products').orderByChild('timestamp').once('value')
+      .then((snapshot) => {
+        container.innerHTML = "";
+        const products = snapshot.val();
+        
+        if (products) {
+          Object.keys(products).forEach((key) => {
+            renderProduct(products[key]);
+          });
+        } else {
+          container.innerHTML = "<p style='text-align:center;width:100%'>No products found.</p>";
+        }
+      })
+      .catch((error) => {
+        console.error("Error loading products:", error);
+        container.innerHTML = "<p style='text-align:center;width:100%'>Error loading products. Please try again.</p>";
+      });
   }
 
   window.onload = loadProducts;
