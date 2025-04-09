@@ -1,21 +1,42 @@
-<!-- add.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Add Product</title>
-  <link rel="stylesheet" href="styles.css">
-  <!-- Database -->
- 
-  <script type="module">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+</head>
+<body>
+
+<h1>Add Product</h1>
+
+<!-- Button to open the form -->
+<button id="openFormBtn">Add Product</button>
+
+<!-- Form Popup -->
+<div id="form-popup" style="display:none;">
+    <button id="closeFormBtn" class="cancel-btn">&times;</button>
+    <h2>Add Product</h2>
+    <input type="file" id="productImage" accept="image/*">
+    <input type="text" id="productName" placeholder="Product Name">
+    <input type="number" id="productPrice" placeholder="Price ($)">
+    <textarea id="productDescription" rows="4" placeholder="Product Description (max 4 lines)"></textarea>
+    <button id="saveProductBtn">Save Product</button>
+</div>
+
+<!-- Product Cards -->
+<div id="product-container"></div>
+
+<script>
+
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
-    // TODO: Add SDKs for Database products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-  
-    // Your web app's Database configuration
-    // For Database JS SDK v7.20.0 and later, measurementId is optional
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";  // Import Firestore
+
+    // Your web app's Firebase configuration
     const firebaseConfig = {
       apiKey: "AIzaSyCskwp6LXirBoO0lnuYfWZyqKMVoqfMcjM",
       authDomain: "cc-mediastore.firebaseapp.com",
@@ -25,83 +46,77 @@
       appId: "1:755685023978:web:5b761e81bc846b96103793",
       measurementId: "G-6L0NJVKKEG"
     };
-  
-    // Initialize Database
+
+    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
-  </script>
-</head>
-<body>
-  <h1>Add Product</h1>
-  <button onclick="openForm()">Add Product</button>
 
-  <div id="form-popup" style="display:none;">
-    <form id="product-form">
-      <input type="file" id="image-input" accept="image/*" required><br>
-      <input type="text" id="name-input" placeholder="Product Name" required><br>
-      <input type="text" id="price-input" placeholder="Price (₦)" required><br>
-      <textarea id="desc-input" maxlength="300" rows="4" placeholder="Product Description (max 4 lines)"></textarea><br>
-      <button type="submit">Submit</button>
-    </form>
-  </div>
+    // Initialize Firestore
+    const db = getFirestore(app);  // Use getFirestore instead of firebase.firestore()
 
-  <div id="product-container"></div>
+// Open and Close Form
+document.getElementById("openFormBtn").addEventListener("click", () => {
+    document.getElementById("form-popup").style.display = "block";
+});
 
-  <script>
-    const form = document.getElementById("product-form");
-    const container = document.getElementById("product-container");
+document.getElementById("closeFormBtn").addEventListener("click", () => {
+    document.getElementById("form-popup").style.display = "none";
+});
 
-    function openForm() {
-      document.getElementById("form-popup").style.display = "block";
-    }
+// Save Product
+document.getElementById("saveProductBtn").addEventListener("click", () => {
+    const name = document.getElementById("productName").value;
+    const price = document.getElementById("productPrice").value;
+    const description = document.getElementById("productDescription").value;
+    const image = document.getElementById("productImage").files[0];
 
-    function renderProduct(product, id) {
-      const card = document.createElement("div");
-      card.className = "product-card";
-      card.innerHTML = `
-        <img src="${product.image}" alt="${product.name}" style="width:100%; height:200px; object-fit:cover;">
-        <h3>${product.name}</h3>
-        <p>${product.price}</p>
-        <p>${product.desc}</p>
-        <button onclick="deleteProduct('${id}')">Delete</button>
-      `;
-      container.appendChild(card);
-    }
+    if (!name || !price || !description || !image) return alert("All fields are required!");
 
-    function loadProducts() {
-      container.innerHTML = "";
-      db.collection("products").get().then(snapshot => {
-        snapshot.forEach(doc => {
-          renderProduct(doc.data(), doc.id);
-        });
-      });
-    }
-
-    function deleteProduct(id) {
-      db.collection("products").doc(id).delete().then(() => {
-        loadProducts();
-      });
-    }
-
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
-      const name = document.getElementById("name-input").value;
-      const price = document.getElementById("price-input").value;
-      const desc = document.getElementById("desc-input").value;
-      const imageFile = document.getElementById("image-input").files[0];
-
-      const reader = new FileReader();
-      reader.onload = function(event) {
-        const imageData = event.target.result;
-        db.collection("products").add({ name, price, desc, image: imageData }).then(() => {
-          form.reset();
-          loadProducts();
-        });
-      };
-      reader.readAsDataURL(imageFile);
+    // Save to Firestore
+    const productRef = db.collection("products");
+    productRef.add({
+        name,
+        price,
+        description,
+        imageUrl: URL.createObjectURL(image) // Using URL.createObjectURL for local file previews
+    })
+    .then(docRef => {
+        console.log("Product added with ID: ", docRef.id);
+        displayProducts();
+        document.getElementById("form-popup").style.display = "none";
+    })
+    .catch(error => {
+        console.error("Error adding product: ", error);
     });
+});
 
-    window.onload = loadProducts;
-  </script>
+// Display Products
+function displayProducts() {
+    const productContainer = document.getElementById("product-container");
+    productContainer.innerHTML = ""; // Clear existing products
+
+    db.collection("products").get().then(snapshot => {
+        snapshot.forEach(doc => {
+            const product = doc.data();
+            const productCard = document.createElement("div");
+            productCard.classList.add("product-card");
+
+            productCard.innerHTML = `
+                <img src="${product.imageUrl}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <p>$${product.price}</p>
+                <p>${product.description}</p>
+                <button class="buy-btn">Buy</button>
+            `;
+
+            productContainer.appendChild(productCard);
+        });
+    });
+}
+
+// Initial Display
+displayProducts();
+</script>
+
 </body>
 </html>
