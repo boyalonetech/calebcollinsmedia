@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Add Product</title>
+  <!-- Add Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-storage-compat.js"></script>
   <style>
     /* Basic styling */
     body {
@@ -105,9 +109,28 @@
       flex-wrap: wrap;
       justify-content: space-around;
     }
+
+    /* Success alert style */
+    .success-alert {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      z-index: 1000;
+      display: none;
+    }
   </style>
 </head>
 <body>
+
+<!-- Success Alert -->
+<div class="success-alert" id="successAlert">
+  Product added successfully!
+</div>
 
 <header>Add New Product</header>
 
@@ -131,7 +154,24 @@
 
 
 <script>
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCskwp6LXirBoO0lnuYfWZyqKMVoqfMcjM",
+    authDomain: "cc-mediastore.firebaseapp.com",
+    projectId: "cc-mediastore",
+    storageBucket: "cc-mediastore.firebasestorage.app",
+    messagingSenderId: "755685023978",
+    appId: "1:755685023978:web:5b761e81bc846b96103793",
+    measurementId: "G-6L0NJVKKEG"
+  };
+ 
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
+  const storage = firebase.storage();
+
   const container = document.getElementById("product-container");
+  const successAlert = document.getElementById("successAlert");
 
   function showModal() {
     document.getElementById("productModal").style.display = "flex";
@@ -139,6 +179,14 @@
 
   function closeModal() {
     document.getElementById("productModal").style.display = "none";
+  }
+
+  function showSuccessAlert(message) {
+    successAlert.textContent = message;
+    successAlert.style.display = "block";
+    setTimeout(() => {
+      successAlert.style.display = "none";
+    }, 3000);
   }
 
   function addProduct() {
@@ -152,30 +200,69 @@
       return;
     }
 
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      const imageData = e.target.result;
-      const product = { image: imageData, name, price, desc };
-      
-      const products = JSON.parse(localStorage.getItem("products") || "[]");
-      products.push(product);
-      localStorage.setItem("products", JSON.stringify(products));
+    // Generate a unique ID for the product
+    const productId = database.ref().child('products').push().key;
+    
+    // Upload image to Firebase Storage
+    const storageRef = storage.ref('product-images/' + productId);
+    const uploadTask = storageRef.put(imageInput.files[0]);
 
-      clearInputs();
-      closeModal();
-      loadProducts();
-    };
-    reader.readAsDataURL(imageInput.files[0]);
+    uploadTask.on('state_changed', 
+      (snapshot) => {
+        // Progress monitoring can be added here
+      }, 
+      (error) => {
+        console.error("Upload failed:", error);
+        alert("Image upload failed. Please try again.");
+      }, 
+      () => {
+        // Upload completed successfully, get download URL
+        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+          // Save product data to Firebase Realtime Database
+          const productData = {
+            id: productId,
+            image: downloadURL,
+            name: name,
+            price: price,
+            desc: desc,
+            timestamp: firebase.database.ServerValue.TIMESTAMP
+          };
+          
+          database.ref('products/' + productId).set(productData)
+            .then(() => {
+              showSuccessAlert("Product added successfully!");
+              clearInputs();
+              closeModal();
+            })
+            .catch((error) => {
+              console.error("Error saving product:", error);
+              alert("Error saving product. Please try again.");
+            });
+        });
+      }
+    );
   }
 
-  function deleteProduct(index) {
-    const products = JSON.parse(localStorage.getItem("products") || "[]");
-    products.splice(index, 1); // Remove the product from the array
-    localStorage.setItem("products", JSON.stringify(products));
-    loadProducts(); // Re-load the products after deletion
+  function deleteProduct(productId) {
+    if (confirm("Are you sure you want to delete this product?")) {
+      // Delete from database
+      database.ref('products/' + productId).remove()
+        .then(() => {
+          showSuccessAlert("Product deleted successfully!");
+          // Optional: Delete the image from storage
+          storage.ref('product-images/' + productId).delete()
+            .catch((error) => {
+              console.error("Error deleting image:", error);
+            });
+        })
+        .catch((error) => {
+          console.error("Error deleting product:", error);
+          alert("Error deleting product. Please try again.");
+        });
+    }
   }
 
-  function renderProduct(product, index) {
+  function renderProduct(product) {
     const card = document.createElement("div");
     card.classList.add("product-card");
     card.innerHTML = `
@@ -185,7 +272,7 @@
       <p class="description">${product.desc}</p>
       <div style="display: flex; justify-content: space-between; gap: 10px; margin-top: 10px;">
         <button class="buy-btn">Buy</button>
-        <button class="delete-btn" onclick="deleteProduct(${index})">Delete</button>
+        <button class="delete-btn" onclick="deleteProduct('${product.id}')">Delete</button>
         <a href="products.html"><button class="buy-btn">See All Products</button></a>
       </div>
     `;
@@ -199,10 +286,17 @@
     document.getElementById("productDesc").value = '';
   }
 
+  // Load products from Firebase
   function loadProducts() {
     container.innerHTML = "";
-    const products = JSON.parse(localStorage.getItem("products") || "[]");
-    products.forEach((p, i) => renderProduct(p, i));
+    database.ref('products').orderByChild('timestamp').on('value', (snapshot) => {
+      const products = snapshot.val();
+      if (products) {
+        Object.keys(products).forEach((key) => {
+          renderProduct(products[key]);
+        });
+      }
+    });
   }
 
   window.onload = loadProducts;
