@@ -47,6 +47,7 @@ function setMobileTheme(isDark) {
   document.body.classList.toggle("mobile-light", !isDark);
   localStorage.setItem("mobile-theme", isDark ? "mobile-dark" : "mobile-light");
   mobileToggle.textContent = isDark ? "🔆" : "🌙";
+  updateBoxShadows(); // Update shadows on toggle
 }
 
 // Load saved preference

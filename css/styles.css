@@ -13,7 +13,7 @@
 }
 
 body {
-  font-family: "Segoe UI", sans-serif;
+  font-family: josefin sans, sans-serif;
   line-height: 1.6;
   background-color: var(--bg);
   color: var(--color);
@@ -508,9 +508,12 @@ nav a:hover {
   flex-direction: column;
   gap: 15px;
   padding: 20px;
+  padding-top: 50px;
   max-width: 650px;
+  height: 60vh;
   border-radius: 20px;
   margin: auto;
+  box-shadow: 0 3px 6px var(--primary-color);
 }
 
 .contact-form input,
@@ -727,3 +730,62 @@ nav a:hover {
 }
 
 
+/* Hire Us Now */
+
+
+.hire-wrapper {
+  text-align: center;
+  position: relative;
+  animation: zoom 700ms infinite alternate;
+  transition: 3s ease-in-out;
+
+}
+
+@keyframes zoom {
+  0% {
+    transition: 3s ease-in-out;
+    scale: 1.1;
+  }
+
+  100% {
+    scale: 1;
+    transition: 3s ease-in-out;
+  }
+}
+
+
+.hand {
+  font-size: 2.5rem;
+  animation: bounce 600ms infinite alternate;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-60%);
+  top: -55px;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translate(-50%, 0);
+  }
+  100% {
+    transform: translate(-50%, 10px);
+  }
+}
+
+.hire-button {
+  padding: 10px 40px;
+  font-size: 1.2rem;
+  margin-bottom: 55px;
+  border: none;
+  background: linear-gradient(135deg, #f5c542, #d6a21d);
+  color: #000;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.hire-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+}

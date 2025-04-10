@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Marketer | CC MEDIA</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="shortcut icon" href="assets/images/caleb-collins.png" type="image/x-icon" />
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init({
+          publicKey: "USNmjxbiQePtgf4pp",
+        });
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- ===================== HEADER =========================== -->
+    <header>
+      <div class="logo">
+        <img
+          src="/assets/images/caleb-collins.png"
+          width="55vw"
+          style="border-radius: 50%"
+          alt="logo"
+        />
+        <h1>CC MEDIA</h1>
+      </div>
+
+      <nav id="navMenu">
+        <ul>
+          <li><a href="page.html">Home</a></li>
+          <li><a href="page.html#projects">Projects</a></li>
+          <li><a href="page.html#about">About</a></li>
+          <li><a href="page.html#services">Services</a></li>
+          <li><a href="page.html#testimonials">Reviews</a></li>
+          <li><a href="page.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Navigation Menu -->
+
+      <div id="mobileThemeToggle" class="mobile-theme-toggle">🌙</div>
+    </header>
+
+    <main>
+      <section
+        class="section slide-in"
+        id="contact"
+        style="
+          display: block;
+          visibility: visible;
+          opacity: 1;
+          margin-top: 25px;
+        "
+      >
+        <h2>Contact Me</h2>
+        <div class="contact-form" id="serviceBox">
+          <input type="text" id="fullName" placeholder="Your Name" required />
+          <input type="email" id="email_id" placeholder="Your Email" required />
+          <textarea
+            id="message"
+            rows="5"
+            placeholder="Tell us what you want"
+            required
+          ></textarea>
+          <button onclick="sendMail()">Send Message</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+          <div class="footer-section logo">
+            <img
+              src="/assets/images/caleb-collins.png"
+              alt="Your Logo"
+              class="footer-logo"
+            />
+            <p> <b>CC MEDIA</b></p>
+          </div>
+          <div class="footer-section about">
+            <h3>About Me</h3>
+            <p>
+              I'm a digital marketing specialist dedicated to helping brands grow through data-driven strategies.
+            </p>
+          </div>
+          <div class="footer-section">
+            <h3>Contact Me</h3>
+            <ul>
+              <li>
+                <a href="http://wa.me/2349045166562">
+                  <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+              </li>
+      
+              <li>
+                <a href="mailto:Sellcoxpress@gmail.com.com">
+                  <i class="fas fa-envelope"></i> Email
+                </a>
+              </li>
+      
+              <li>
+                <a href="#contact">
+                  <i class="fas fa-phone"></i> <a href="Tel:2349045166562">+234 9045166562</a>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer-section social">
+            <h3>Follow Me</h3>
+            <div class="icons">
+              <!-- Facebook -->
+              <a href="https://www.facebook.com/share/19Zy5KWb4d/?mibextid=wwXIfr">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24px"
+                  height="24px"
+                  viewBox="0 0 24 24"
+                >
+                  <rect width="24" height="24" fill="none" />
+                  <path
+                    fill="currentColor"
+                    d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95"
+                  />
+                </svg>
+              </a>
+              <!-- whatsapp -->
+              <a href="http://wa.me/2349045166562">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24px"
+                  height="24px"
+                  viewBox="0 0 24 24"
+                >
+                  <rect width="24" height="24" fill="none" />
+                  <path
+                    fill="currentColor"
+                    d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91c0-2.65-1.03-5.14-2.9-7.01m-7.01 15.24c-1.48 0-2.93-.4-4.2-1.15l-.3-.18l-3.12.82l.83-3.04l-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24c2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c.02 4.54-3.68 8.23-8.22 8.23m4.52-6.16c-.25-.12-1.47-.72-1.69-.81c-.23-.08-.39-.12-.56.12c-.17.25-.64.81-.78.97c-.14.17-.29.19-.54.06c-.25-.12-1.05-.39-1.99-1.23c-.74-.66-1.23-1.47-1.38-1.72c-.14-.25-.02-.38.11-.51c.11-.11.25-.29.37-.43s.17-.25.25-.41c.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31c-.22.25-.86.85-.86 2.07s.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.23 3.74c.59.26 1.05.41 1.41.52c.59.19 1.13.16 1.56.1c.48-.07 1.47-.6 1.67-1.18c.21-.58.21-1.07.14-1.18s-.22-.16-.47-.28"
+                  />
+                </svg>
+              </a>
+              <!-- linkedin -->
+              <a
+                href="http://linkedin.com/in/caleb-collins-901756346"
+              >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M20.452 20.45h-3.56v-5.57c0-1.328-.022-3.036-1.85-3.036c-1.851 0-2.134 1.447-2.134 2.942v5.664H9.352V8.997h3.413v1.566h.049c.475-.9 1.636-1.85 3.367-1.85c3.605 0 4.27 2.371 4.27 5.456zM5.339 7.433a2.063 2.063 0 1 1 0-4.13a2.065 2.065 0 0 1 0 4.13M7.12 20.45H3.558V8.997H7.12zM23 0H1a1 1 0 0 0-1 1v22a1 1 0 0 0 1 1h22a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1"/></svg>
+              </a>
+              <!-- instagram -->
+              <a href="https://www.instagram.com/caleb__collins_fire?igsh=aTFrNzJhZW55aDY0&utm_source=q">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24px"
+                  height="24px"
+                  viewBox="0 0 24 24"
+                >
+                  <rect width="24" height="24" fill="none" />
+                  <circle
+                    cx="17"
+                    cy="7"
+                    r="1.5"
+                    fill="currentColor"
+                    fill-opacity="0"
+                  >
+                    <animate
+                      fill="freeze"
+                      attributeName="fill-opacity"
+                      begin="1.3s"
+                      dur="0.15s"
+                      values="0;1"
+                    />
+                  </circle>
+                  <g
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-dasharray="72"
+                      stroke-dashoffset="72"
+                      d="M16 3c2.76 0 5 2.24 5 5v8c0 2.76 -2.24 5 -5 5h-8c-2.76 0 -5 -2.24 -5 -5v-8c0 -2.76 2.24 -5 5 -5h4Z"
+                    >
+                      <animate
+                        fill="freeze"
+                        attributeName="stroke-dashoffset"
+                        dur="0.6s"
+                        values="72;0"
+                      />
+                    </path>
+                    <path
+                      stroke-dasharray="28"
+                      stroke-dashoffset="28"
+                      d="M12 8c2.21 0 4 1.79 4 4c0 2.21 -1.79 4 -4 4c-2.21 0 -4 -1.79 -4 -4c0 -2.21 1.79 -4 4 -4"
+                    >
+                      <animate
+                        fill="freeze"
+                        attributeName="stroke-dashoffset"
+                        begin="0.7s"
+                        dur="0.6s"
+                        values="28;0"
+                      />
+                    </path>
+                  </g>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; CC MEDIA. All rights reserved.</p>
+        </div>
+      </footer>
+    <script src="/scripts/main.js"></script>
+  </body>
+</html>
