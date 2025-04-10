@@ -508,9 +508,7 @@ nav a:hover {
   flex-direction: column;
   gap: 15px;
   padding: 20px;
-  padding-top: 50px;
   max-width: 650px;
-  height: 60vh;
   border-radius: 20px;
   margin: auto;
   box-shadow: 0 3px 6px var(--primary-color);
