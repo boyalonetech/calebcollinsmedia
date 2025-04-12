@@ -68,23 +68,13 @@ const cardContainer = document.getElementById("cardContainer");
 // You can add your own image URLs here
 const imageUrls = [
   "assets/Creative Graphics/87d7ca0d-cea5-44a9-be73-942fe3efd58f.jpg",
-  "assets/Creative Graphics/336720D6-63A9-4863-B032-9DF89F5D9FC4.jpeg",
+  "assets/Portfolio/fd9587ac-0b2f-4e82-9764-53707f39c9d0.jpg",
   "assets/Creative Graphics/Black & Yellow Modern Exclusive Furniture Poster.png.png",
-  "assets/Creative Graphics/Blue Modern Medical Health Flyer.png",
-  "assets/Creative Graphics/Brown and Beige Modern Tailor Service Instagram Post.png.png",
-  "assets/Creative Graphics/Cream Simple We Are Open Metal Sign.png",
-  "assets/Creative Graphics/Happy Birthday.png.png",
-  "assets/Creative Graphics/IMG_0081.JPG",
-  "assets/Creative Graphics/IMG_7488.JPG",
-  "assets/Creative Graphics/IMG_7489.JPG",
-  "assets/Creative Graphics/IMG_8042.JPG",
-  "assets/Creative Graphics/IMG_9268.PNG",
-  "assets/Creative Graphics/Money Is Not The Goal.zip - 1.png",
-  "assets/Creative Graphics/Money Is Not The Goal.zip - 2.png",
-  "assets/Creative Graphics/Money Is Not The Goal.zip - 4.png",
-  "assets/Creative Graphics/Money Is Not The Goal.zip - 5.png",
-  "assets/Creative Graphics/Money Is Not The Goal.zip - 6.png",
-  "assets/Creative Graphics/phonto.jpg",
+  "assets/Portfolio/f8c2928d-fcf5-417f-994e-76e5e0e9c86f.jpg",
+  "assets/Portfolio/phonto.jpg",
+  "assets/Portfolio/IMG_8043.JPG",
+  "assets/Portfolio/f17265b1-db73-440a-9c04-d651ce55bd67.jpg",
+  "assets/Portfolio/IMG_8042.JPG",
 ];
 
 // Create cards dynamically with different images
