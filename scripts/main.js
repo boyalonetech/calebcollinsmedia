@@ -67,9 +67,9 @@ const cardContainer = document.getElementById("cardContainer");
 
 // You can add your own image URLs here
 const imageUrls = [
-  "assets/Creative Graphics/87d7ca0d-cea5-44a9-be73-942fe3efd58f.jpg",
   "assets/Portfolio/fd9587ac-0b2f-4e82-9764-53707f39c9d0.jpg",
   "assets/Creative Graphics/Black & Yellow Modern Exclusive Furniture Poster.png.png",
+  "assets/Portfolio/WhatsApp Image 2025-04-13 at 12.12.25_b3ab982a.jpg",
   "assets/Portfolio/f8c2928d-fcf5-417f-994e-76e5e0e9c86f.jpg",
   "assets/Portfolio/phonto.jpg",
   "assets/Portfolio/IMG_8043.JPG",
