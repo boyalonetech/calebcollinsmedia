@@ -75,6 +75,14 @@ const imageUrls = [
   "assets/Portfolio/IMG_8043.JPG",
   "assets/Portfolio/f17265b1-db73-440a-9c04-d651ce55bd67.jpg",
   "assets/Portfolio/IMG_8042.JPG",
+  "assets/Portfolio/18889ffe-e16e-4971-b784-2b2c465a6953.jpg",
+  "assets/Portfolio/f17265b1-db73-440a-9c04-d651ce55bd67.jpg",
+  "assets/Portfolio/fd9587ac-0b2f-4e82-9764-53707f39c9d0.jpg",
+  "assets/Portfolio/IMG_1822.PNG",
+  "assets/Portfolio/IMG_1823.PNG",
+  "assets/Portfolio/IMG_1823.PNG",
+  "assets/Portfolio/IMG_1828.JPG",
+  "assets/Portfolio/IMG_9268.jpeg",
 ];
 
 // Create cards dynamically with different images
