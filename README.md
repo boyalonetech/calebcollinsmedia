@@ -15,3 +15,4 @@
 - add your own testimonials
 - add your own services and projects
 - add your own team members
+- add your own footer
