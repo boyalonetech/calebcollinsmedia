@@ -5,10 +5,10 @@ const services = document.querySelectorAll("#serviceBox"); // Select all element
 // Function to update box shadow for all service boxes
 function updateBoxShadows() {
   const isDark = body.classList.contains("dark");
-  services.forEach(service => {
+  services.forEach((service) => {
     service.style.boxShadow = isDark
-      ? "0 2px 6px rgb(230, 211, 104)"  // Green for dark mode
-      : "0 4px 8px rgba(0, 0, 0, 0.3)";   // Black for light mode
+      ? "0 2px 6px rgb(230, 211, 104)" // Green for dark mode
+      : "0 4px 8px rgba(0, 0, 0, 0.3)"; // Black for light mode
   });
 }
 
@@ -31,14 +31,14 @@ sliderSwitch.addEventListener("click", () => {
   body.classList.toggle("light");
   body.classList.toggle("dark");
 
-  services.forEach(service => service.classList.add("active"));
+  services.forEach((service) => service.classList.add("active"));
   updateBoxShadows(); // Update shadows on toggle
 
   const isDark = body.classList.contains("dark");
   localStorage.setItem("theme", isDark ? "dark" : "light");
 });
 
-// mobile 
+// mobile
 
 const mobileToggle = document.getElementById("mobileThemeToggle");
 
@@ -60,18 +60,20 @@ mobileToggle.addEventListener("click", () => {
   setMobileTheme(!isDark);
 });
 
-
-
 // Dynamic scale based on distance from center
 const cardContainer = document.getElementById("cardContainer");
 
 // You can add your own image URLs here
 const imageUrls = [
+  "assets/images/adel.jpg",
+  "assets/images/6million.jpg",
+  "assets/images/view.jpg",
+  "assets/images/view2.jpg",
   "assets/Portfolio/fd9587ac-0b2f-4e82-9764-53707f39c9d0.jpg",
   "assets/Creative Graphics/Black & Yellow Modern Exclusive Furniture Poster.png.png",
   "assets/Portfolio/WhatsApp Image 2025-04-13 at 12.12.25_b3ab982a.jpg",
   "assets/Portfolio/f8c2928d-fcf5-417f-994e-76e5e0e9c86f.jpg",
-  "assets/Portfolio/IMG_1822.PNG",
+  // "assets/Portfolio/IMG_1822.PNG",
   "assets/Portfolio/phonto.jpg",
   "assets/Portfolio/IMG_8043.JPG",
   "assets/Portfolio/f17265b1-db73-440a-9c04-d651ce55bd67.jpg",
@@ -104,14 +106,13 @@ cardContainer.addEventListener("scroll", () => {
     const distance = Math.abs(containerCenter - cardCenter);
 
     // Distance-based scaling (you can tweak the divisor for effect)
-    let scale = Math.max(0.80, 1.1 - distance / 600);
+    let scale = Math.max(0.8, 1.1 - distance / 600);
     card.style.transform = `scale(${scale})`;
   });
 });
 
 // Initial trigger
 cardContainer.dispatchEvent(new Event("scroll"));
-
 
 //    Send Message
 
@@ -120,7 +121,7 @@ function sendMail() {
     from_name: document.getElementById("fullName").value,
     email_id: document.getElementById("email_id").value,
     message: document.getElementById("message").value,
-    to_email: "Sellcoxpress@gmail.com" // Optional, depending on your template setup
+    to_email: "Sellcoxpress@gmail.com", // Optional, depending on your template setup
   };
 
   emailjs
@@ -129,7 +130,6 @@ function sendMail() {
       alert("Email sent successfully! Status: " + res.status);
     });
 }
-
 
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".progress-bar span").forEach((bar) => {
@@ -193,22 +193,18 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", debounce(handleScroll));
 });
 
-
 let lastScrollTop = 0; // Keeps track of the last scroll position
 
-window.addEventListener('scroll', () => {
-  const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+window.addEventListener("scroll", () => {
+  const currentScroll =
+    window.pageYOffset || document.documentElement.scrollTop;
 
   // If scrolling down
   if (currentScroll > lastScrollTop) {
-    sliderSwitch.style.display = 'none'; // Hide the section when scrolling up
-
+    sliderSwitch.style.display = "none"; // Hide the section when scrolling up
   } else {
-    sliderSwitch.style.display = 'block'; // Show the section
-
+    sliderSwitch.style.display = "block"; // Show the section
   }
 
   lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Reset the scroll position to prevent negative values
 });
-
-

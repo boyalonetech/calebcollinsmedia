@@ -45,7 +45,6 @@ body {
 .light {
   background-color: var(--color);
   color: var(--bg);
-  box-shadow: 0 0px solid red;
 }
 
 .dark1 {
@@ -263,7 +262,7 @@ nav a:hover {
   box-sizing: border-box;
   padding: 20px;
 }
-.about-text p{
+.about-text p {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -273,7 +272,6 @@ nav a:hover {
   white-space: normal;
   hyphens: auto;
 }
-
 
 .about-text h2 {
   font-size: 2em;
@@ -448,6 +446,10 @@ nav a:hover {
   padding: 30px 0;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+}
+
+.image-box {
+  box-shadow: 0px 2px 20px var(--primary-color);
 }
 
 .card-container::-webkit-scrollbar {
