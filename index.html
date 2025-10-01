@@ -12,7 +12,11 @@
     />
     <meta name="author" content="Caleb Collin's" />
     <meta name="robots" content="index, follow" />
-    <link rel="shortcut icon" href="assets/images/caleb-collins.png" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="assets/images/caleb-collins.png"
+      type="image/x-icon"
+    />
     <style>
       body {
         margin: 0;
@@ -51,7 +55,7 @@
 
       .welcome-text p {
         font-size: 1.2rem;
-        color: rgb(230, 211, 104)ccc;
+        color: rgb(230, 211, 104) ccc;
         margin: 0;
       }
 
@@ -93,7 +97,8 @@
       const titleEl = document.getElementById("typewriter-title");
       const subtitleEl = document.getElementById("typewriter-subtitle");
 
-      let i = 0, j = 0;
+      let i = 0,
+        j = 0;
 
       function typeTitle() {
         if (i < titleText.length) {
@@ -110,6 +115,8 @@
           subtitleEl.innerHTML += subtitleText.charAt(j);
           j++;
           setTimeout(typeSubtitle, 70);
+        } else {
+          window.location.href = "page.html";
         }
       }
 
